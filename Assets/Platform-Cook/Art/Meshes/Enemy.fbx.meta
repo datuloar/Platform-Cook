@@ -2,7 +2,19 @@ fileFormatVersion: 2
 guid: c6304830329c03b4da5af76fec0b3fbf
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 4877158476044601397
+    second: Skelet.c.002|Attack
+  - first:
+      74: 5696540986009282988
+    second: Skelet.c.002|Eating
+  - first:
+      74: 5971471336640257600
+    second: Skelet.c.002|Idle
+  - first:
+      74: -5624666873938197048
+    second: Skelet.c.002|Run
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -23,7 +35,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -88,13 +100,13 @@ ModelImporter:
     globalScale: 0.3
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
