@@ -26,8 +26,3 @@ public class Storey : MonoBehaviour, IStorey
         }
     }
 }
-
-public interface ITable
-{
-    
-}

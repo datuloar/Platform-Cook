@@ -1,20 +1,21 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 public class Game : IGame
 {
     private readonly IViewport _viewport;
     private readonly IGameEngine _gameEngine;
     private readonly IHouse _house;
+    private readonly ICamera _camera;
 
     private bool _isPlaying;
     private Player _player;
 
-    public Game(IViewport viewport, IHouse house, IGameEngine gameEngine)
+    public Game(IViewport viewport, IHouse house, ICamera camera, IGameEngine gameEngine)
     {
         _viewport = viewport;
         _gameEngine = gameEngine;
         _house = house;
+        _camera = camera;
     }
 
     public void Start()
@@ -40,6 +41,7 @@ public class Game : IGame
     private void InitializationComponents()
     {
         var cook = _house.CreateCook();
+        _camera.SetTarget(cook);
 
         _player = new Player(cook, _gameEngine.GetInputDevice());       
     }
@@ -59,76 +61,4 @@ public class Game : IGame
         _isPlaying = false;
         _gameEngine.GetInputDevice().Disable();
     }
-}
-
-public class HumansFactory : IHumansFactory
-{
-    private const string CookPath = "Humans/Cook";
-    private const string HumanPath = "Humans/HungryHuman";
-
-    private readonly IAssetsProvider _assetsProvider;
-
-    public HumansFactory(IAssetsProvider assetsProvider)
-    {
-        _assetsProvider = assetsProvider;
-    }
-
-    public ICook CreateCook(Vector3 position)
-    {
-        var instantiatedObject = _assetsProvider.Instantiate(CookPath, position);
-
-        if (instantiatedObject.TryGetComponent(out ICook cook))
-            return cook;
-
-        throw new System.ArgumentException($"Missing script {nameof(ICook)}");
-    }
-
-    public IHungryHuman CreateHungryHuman(Vector3 position)
-    {
-        var instantiatedObject = _assetsProvider.Instantiate(HumanPath, position);
-
-        if (instantiatedObject.TryGetComponent(out IHungryHuman hungryHuman))
-            return hungryHuman;
-
-        throw new System.ArgumentException($"Missing script {nameof(IHungryHuman)}");
-    }
-}
-
-public class AssetsProvider : IAssetsProvider
-{
-    public GameObject Instantiate(string path, Vector3 position, Vector3 rotationEuler)
-    {
-        var prefab = Resources.Load<GameObject>(path);
-        return Object.Instantiate(prefab, position, Quaternion.Euler(rotationEuler));
-    }
-
-    public GameObject Instantiate(string path, Vector3 position)
-    {
-        var prefab = Resources.Load<GameObject>(path);
-        return Object.Instantiate(prefab, position, Quaternion.identity);
-    }
-
-    public GameObject Instantiate(string path)
-    {
-        var prefab = Resources.Load<GameObject>(path);
-        return Object.Instantiate(prefab);
-    }
-}
-
-public interface IAssetsProvider
-{
-    GameObject Instantiate(string path, Vector3 position, Vector3 rotationEuler);
-    GameObject Instantiate(string path, Vector3 position);
-    GameObject Instantiate(string path);
-}
-
-public interface IHumansFactory
-{
-    ICook CreateCook(Vector3 position);
-    IHungryHuman CreateHungryHuman(Vector3 position);
-}
-
-public interface IHungryHuman : IHuman
-{
-    void Init(ITable table);
 }
