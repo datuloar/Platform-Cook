@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Game : IGame
@@ -35,23 +34,77 @@ public class Game : IGame
         }
     }
 
+
+
     private void End()
     {
         _isPlaying = false;
-    }  
+    }
 }
 
-
-public interface IPlatform
+public class HumansFactory : IHumansFactory
 {
-    void Move(Vector3 targetPosition, Action arrived = null);
+    private const string CookPath = "Humans/Cook";
+    private const string HumanPath = "Humans/Human";
+
+    private readonly IAssetsProvider _assetsProvider;
+
+    public HumansFactory(IAssetsProvider assetsProvider)
+    {
+        _assetsProvider = assetsProvider;
+    }
+
+    public ICook CreateCook(Vector3 position)
+    {
+        var instantiatedObject = _assetsProvider.Instantiate(CookPath, position);
+
+        if (instantiatedObject.TryGetComponent(out ICook cook))
+            return cook;
+
+        throw new System.ArgumentException($"missing script {nameof(ICook)}");
+    }
+
+    public IHuman CreateHuman(Vector3 position)
+    {
+        var instantiatedObject = _assetsProvider.Instantiate(HumanPath, position);
+
+        if (instantiatedObject.TryGetComponent(out IHuman cook))
+            return cook;
+
+        throw new System.ArgumentException($"missing script {nameof(IHuman)}");
+    }
 }
 
-public class Room : MonoBehaviour, IRoom
+public class AssetsProvider : IAssetsProvider
 {
-    [SerializeField] private Transform _platformDock;
+    public GameObject Instantiate(string path, Vector3 position, Vector3 rotationEuler)
+    {
+        var prefab = Resources.Load<GameObject>(path);
+        return Object.Instantiate(prefab, position, Quaternion.Euler(rotationEuler));
+    }
 
-    public Vector3 PlatformDockPoisition => _platformDock.position;
+    public GameObject Instantiate(string path, Vector3 position)
+    {
+        var prefab = Resources.Load<GameObject>(path);
+        return Object.Instantiate(prefab, position, Quaternion.identity);
+    }
 
-    public event Action Cleared;
+    public GameObject Instantiate(string path)
+    {
+        var prefab = Resources.Load<GameObject>(path);
+        return Object.Instantiate(prefab);
+    }
+}
+
+public interface IAssetsProvider
+{
+    GameObject Instantiate(string path, Vector3 position, Vector3 rotationEuler);
+    GameObject Instantiate(string path, Vector3 position);
+    GameObject Instantiate(string path);
+}
+
+public interface IHumansFactory
+{
+    ICook CreateCook(Vector3 position);
+    IHuman CreateHuman(Vector3 position);
 }
