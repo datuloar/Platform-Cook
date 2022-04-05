@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IPlatform
 {
-    void Move(Vector3 targetPosition, Action arrived = null);
+    void MoveToStoreyDock(Vector3 dockPosition, Action moved = null);
 }
