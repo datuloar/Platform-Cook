@@ -1,4 +1,4 @@
-﻿public interface ICook : IHuman, ICameraTarget
+﻿public interface ICook : IHuman, ICameraTarget, IControlledHuman, IUpdateLoop
 {
 
 }

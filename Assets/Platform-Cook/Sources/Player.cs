@@ -17,6 +17,8 @@ public class Player : IUpdateLoop
 
     public void Tick(float time)
     {
+        _controlledCharacter.Tick(time);
+
         if (_inputDevice.Axis.magnitude > Constants.Math.Epsilon)
         {
             _moveDirection.x = _inputDevice.Axis.x;

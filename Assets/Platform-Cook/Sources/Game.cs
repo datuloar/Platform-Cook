@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class Game : IGame
 {
@@ -24,10 +25,15 @@ public class Game : IGame
 
         InitializationComponents();
 
-        _gameEngine.GetInputDevice().Enable();
-        _viewport.GetPlayWindow().Open();
+        _gameEngine.GetInputDevice().Disable();
 
-        _house.CurrentStorey.HumansDied += OnStoreyCleared;
+        _viewport.GetStartWindow().StartGameButtonClicked += OnStartGameButtonClicked;
+        _house.GetPlatform().FoodEnded += OnPlatformFoodEnded;
+    }
+
+    private void OnPlatformFoodEnded()
+    {
+        Lose();
     }
 
     public void Tick(float time)
@@ -46,7 +52,7 @@ public class Game : IGame
         _player = new Player(cook, _gameEngine.GetInputDevice());       
     }
 
-    private void OnStoreyCleared()
+    private void OnWavesEnded()
     {
         _house.MoveNextStorey(OnNextStoreyMoved);
     }
@@ -56,9 +62,30 @@ public class Game : IGame
         
     }
 
+    private void OnStartGameButtonClicked()
+    {
+        _camera.MoveToStartPoint(OnCameraMovedOnStartPoint);
+        _viewport.GetStartWindow().Close();
+    }
+
+    private void OnCameraMovedOnStartPoint()
+    {
+        _viewport.GetPlayWindow().Open();
+        _gameEngine.GetInputDevice().Enable();
+        _house.StartWaves(OnWavesEnded);
+    }
+
+    private void Lose()
+    {
+        End();
+        _viewport.GetDefeatWindow().Open();
+    }
+
     private void End()
     {
         _isPlaying = false;
+        _viewport.GetPlayWindow().Close();
         _gameEngine.GetInputDevice().Disable();
+        _house.GetPlatform().FoodEnded -= OnPlatformFoodEnded;
     }
 }

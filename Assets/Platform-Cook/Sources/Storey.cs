@@ -17,12 +17,15 @@ public class Storey : MonoBehaviour, IStorey
         _humansFactory = humansFactory;
     }
 
-    public void StartWaves(ITable table)
+    public void StartWaves(IPlatform platform)
     {
         for (int i = 0; i < _waveSettings.StartHumansCount; i++)
         {
-            var human = _humansFactory.CreateHungryHuman(_waveSettings.HumansPositions[i].position);
-            human.Init(table);
+            var human = _humansFactory.CreateHungryHuman(_waveSettings.HumansPositions[i].position,
+                _waveSettings.HumansPositions[i].rotation.eulerAngles);
+
+            human.Init(platform);
+            human.StartMove();
         }
     }
 }

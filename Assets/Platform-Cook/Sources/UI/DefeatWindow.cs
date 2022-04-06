@@ -18,6 +18,7 @@ public class DefeatWindow : MonoBehaviour, IDefeatWindow
     {
         _restartButton.onClick.RemoveListener(OnRestartButtonClicked);
     }
+
     public void Close()
     {
         _canvasGroup.Close();

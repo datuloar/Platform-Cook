@@ -2,8 +2,8 @@
 
 public interface IHouse
 {
-    IStorey CurrentStorey { get; }
-
+    IPlatform GetPlatform();
     ICook CreateCook();
     void MoveNextStorey(Action moved = null);
+    void StartWaves(Action ended = null);
 }

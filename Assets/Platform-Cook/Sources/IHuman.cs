@@ -1,6 +1,11 @@
 ﻿using System;
+using UnityEngine;
 
-public interface IHuman : IMovement
+public interface IHuman
 {
-    event Action Dead; 
+    Transform transform { get; }
+
+    event Action Dead;
+
+    void Damage(float value);
 }

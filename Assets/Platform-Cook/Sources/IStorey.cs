@@ -8,5 +8,5 @@ public interface IStorey
     event Action HumansDied;
 
     void Init(IHumansFactory humansFactory);
-    void StartWaves(ITable table);
+    void StartWaves(IPlatform platform);
 }

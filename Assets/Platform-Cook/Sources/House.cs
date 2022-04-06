@@ -21,13 +21,20 @@ public class House : IHouse
     }
 
     public bool HasNextStorey => _currentStoreyIndex + 1 <= _storeys.Count;
-    public IStorey CurrentStorey => _storeys[_currentStoreyIndex];
 
     public void MoveNextStorey(Action moved = null)
     {
         _currentStoreyIndex++;
-        _platform.MoveToStoreyDock(CurrentStorey.PlatformDockPosition, moved);
+        _platform.MoveToStoreyDock(_storeys[_currentStoreyIndex].PlatformDockPosition, moved);
     }
 
-    public ICook CreateCook() => _humansFactory.CreateCook(Vector3.zero);
+    public void StartWaves(Action ended = null)
+    {
+        _storeys[_currentStoreyIndex].StartWaves(_platform);
+        _storeys[_currentStoreyIndex].HumansDied += (() => ended?.Invoke());
+    }
+
+    public ICook CreateCook() => _humansFactory.CreateCook(Vector3.zero, new Vector3(0, 180));
+
+    public IPlatform GetPlatform() => _platform;
 }

@@ -1,4 +1,6 @@
-﻿public interface IStartWindow : IWindow
-{
+﻿using System;
 
+public interface IStartWindow : IWindow
+{
+    event Action StartGameButtonClicked;
 }

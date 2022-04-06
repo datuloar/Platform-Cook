@@ -1,4 +1,5 @@
 ﻿public interface IHungryHuman : IHuman
 {
-    void Init(ITable table);
+    void Init(IPlatform platform);
+    void StartMove();
 }

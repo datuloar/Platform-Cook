@@ -12,9 +12,9 @@ public class HumansFactory : IHumansFactory
         _assetsProvider = assetsProvider;
     }
 
-    public ICook CreateCook(Vector3 position)
+    public ICook CreateCook(Vector3 position, Vector3 rotationEuler)
     {
-        var instantiatedObject = _assetsProvider.Instantiate(CookPath, position);
+        var instantiatedObject = _assetsProvider.Instantiate(CookPath, position, rotationEuler);
 
         if (instantiatedObject.TryGetComponent(out ICook cook))
             return cook;
@@ -22,9 +22,9 @@ public class HumansFactory : IHumansFactory
         throw new System.ArgumentException($"Missing script {nameof(ICook)}");
     }
 
-    public IHungryHuman CreateHungryHuman(Vector3 position)
+    public IHungryHuman CreateHungryHuman(Vector3 position, Vector3 rotationEuler)
     {
-        var instantiatedObject = _assetsProvider.Instantiate(HumanPath, position);
+        var instantiatedObject = _assetsProvider.Instantiate(HumanPath, position, rotationEuler);
 
         if (instantiatedObject.TryGetComponent(out IHungryHuman hungryHuman))
             return hungryHuman;
