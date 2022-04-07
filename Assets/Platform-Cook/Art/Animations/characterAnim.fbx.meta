@@ -1,8 +1,26 @@
 fileFormatVersion: 2
-guid: 8cb90adb52dc59d4ba4d9815465bff61
+guid: 00d5cb9c27e605247bb0aaf1d2b71d50
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -4572549976004244999
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|characterEating
+  - first:
+      74: 6700422745644723089
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Attack
+  - first:
+      74: 5836026348593069627
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Attack.001
+  - first:
+      74: 6873369678479133405
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Idle
+  - first:
+      74: -5741902278204066263
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Run
+  - first:
+      74: 1685256198980213713
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|startIdle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -88,13 +106,13 @@ ModelImporter:
     globalScale: 0.3
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 1
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
