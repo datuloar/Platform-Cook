@@ -1,7 +1,9 @@
 ﻿using System;
 
-public interface IHouse
+public interface IHouse : IUpdateLoop
 {
+    bool HasNextStorey { get; }
+
     IPlatform GetPlatform();
     ICook CreateCook();
     void MoveNextStorey(Action moved = null);

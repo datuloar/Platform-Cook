@@ -3,15 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 
 public class Platform : MonoBehaviour, IPlatform
 {
-    [SerializeField] private float _speed;
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private float _moveDuration;
     [SerializeField] private PlatformZoneTrigger _zone;
     [SerializeField] private List<Food> _food;
 
     private Coroutine _movingToStoreyDock;
     private bool _isCookInsideZone;
+    private bool _isMovingToNextStorey;
 
     public int MaxFoodCount { get; private set; }
     public int FoodCount => _food.Count;
@@ -37,11 +40,8 @@ public class Platform : MonoBehaviour, IPlatform
         _zone.Exit -= OnZoneExit;
     }
 
-    public void EatFood(float foodPiecePerDelay)
+    public IFood GetFood()
     {
-        if (foodPiecePerDelay < 0)
-            throw new ArgumentException("Piece can't be lower zero");
-
         var selectedFood = _food.FirstOrDefault();
         selectedFood.Eat();
 
@@ -51,6 +51,8 @@ public class Platform : MonoBehaviour, IPlatform
             FoodEnded?.Invoke();
 
         FoodCountChanged?.Invoke();
+
+        return selectedFood;
     }
 
     public void MoveToStoreyDock(Vector3 dockPosition, Action moved = null)
@@ -65,19 +67,25 @@ public class Platform : MonoBehaviour, IPlatform
     {
         yield return new WaitUntil(() => _isCookInsideZone);
 
-        while (transform.position != dockPosition)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, dockPosition, _speed * Time.deltaTime);
+        _isMovingToNextStorey = true;
 
-            yield return null;
-        }
-
-        _movingToStoreyDock = null;
-        moved?.Invoke();
+        _rigidbody.DOMove(dockPosition, _moveDuration)
+            .OnComplete(() =>
+            {
+                moved?.Invoke();
+                _isMovingToNextStorey = false;
+            });      
     }
 
     private void OnZoneExit(ICook _) => _isCookInsideZone = false;
 
-    private void OnZoneStay(ICook _) => _isCookInsideZone = true;
+    private void OnZoneStay(ICook cook)
+    {
+        if (_isMovingToNextStorey)
+            cook.FreezeMovement();
+        else
+            cook.UnfreezeMovement();
 
+        _isCookInsideZone = true;
+    }
 }

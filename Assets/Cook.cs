@@ -10,8 +10,13 @@ public class Cook : MonoBehaviour, ICook
     [SerializeField] private PhysicsMovement _movement;
     [SerializeField] private HumanAnimation _animation;
     [SerializeField] private HumanHealth _health;
+    [SerializeField] private HumanBelly _belly;
+    [SerializeField] private ParticleSystem _fartTrailVfx;
 
     public event Action Dead;
+
+    public IHumanBelly Belly => _belly;
+    public HumanAnimation Animation => _animation;
 
     private void OnEnable()
     {
@@ -53,4 +58,13 @@ public class Cook : MonoBehaviour, ICook
             _animation.PlayAttack();
         }
     }
+
+    public void StartFarting()
+    {
+        _fartTrailVfx.Play();
+    }
+
+    public void FreezeMovement() => _movement.Freeze();
+
+    public void UnfreezeMovement() => _movement.Unfreeze();
 }

@@ -1,4 +1,8 @@
-﻿public interface ICook : IHuman, ICameraTarget, IControlledHuman, IUpdateLoop
+﻿public interface ICook : IHuman, IControlledHuman, IUpdateLoop
 {
+    HumanAnimation Animation { get; }
 
+    void FreezeMovement();
+    void StartFarting();
+    void UnfreezeMovement();
 }

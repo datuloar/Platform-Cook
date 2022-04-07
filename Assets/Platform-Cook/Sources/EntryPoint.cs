@@ -8,16 +8,18 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private Platform _platform;
     [SerializeField] private List<Storey> _storeys;
     [SerializeField] private MainCamera _camera;
+    [SerializeField] private MiniGame _miniGame;
 
     private IGame _game;
 
     private void Awake()
     {
         var assetsProvider = new AssetsProvider();
+        var level = new Level();
         var humansFactory = new HumansFactory(assetsProvider);
         var house = new House(_storeys, _platform, humansFactory);
 
-        _game = new Game(_viewport, house, _camera, _gameEngine);
+        _game = new Game(_viewport, house, _camera, level, _miniGame, _gameEngine);
     }
 
     private void Start()

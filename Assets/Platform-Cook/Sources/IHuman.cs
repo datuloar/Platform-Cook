@@ -1,10 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-public interface IHuman
+public interface IHuman : ICameraTarget
 {
-    Transform transform { get; }
-
     event Action Dead;
 
     void Damage(float value);

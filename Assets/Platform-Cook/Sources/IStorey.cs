@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public interface IStorey
+public interface IStorey : IUpdateLoop
 {
     Vector3 PlatformDockPosition { get; }
 

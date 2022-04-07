@@ -7,6 +7,8 @@ public class PhysicsMovement : MonoBehaviour
     [SerializeField] private float _speed = 10f;
     [SerializeField] private float _rotationSpeed = 10f;
 
+    private bool _canMovement = true;
+
     public float Velocity => _rigidbody.velocity.magnitude;
     public bool IsMoving { get; private set; }
 
@@ -16,13 +18,24 @@ public class PhysicsMovement : MonoBehaviour
             throw new ArgumentException();
     }
 
+    public void Freeze() => _canMovement = false;
+
+    public void Unfreeze() => _canMovement = true;
+
     public void Move(Vector3 direction)
     {
-        MoveRotation(direction);
+        if (_canMovement)
+        {
+            MoveRotation(direction);
 
-        _rigidbody.velocity = direction * _speed;
+            _rigidbody.velocity = direction * _speed;
 
-        IsMoving = true;
+            IsMoving = true;
+        }
+        else
+        {
+            Stop();
+        }
     }
 
     public void Stop()

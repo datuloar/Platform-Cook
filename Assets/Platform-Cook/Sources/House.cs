@@ -20,7 +20,13 @@ public class House : IHouse
             storey.Init(humansFactory);
     }
 
-    public bool HasNextStorey => _currentStoreyIndex + 1 <= _storeys.Count;
+    public bool HasNextStorey => _currentStoreyIndex + 1 < _storeys.Count;
+
+    public void Tick(float time)
+    {
+        foreach (var storey in _storeys)
+            storey.Tick(time);
+    }
 
     public void MoveNextStorey(Action moved = null)
     {

@@ -11,5 +11,5 @@ public interface IPlatform
     event Action FoodCountChanged;
 
     void MoveToStoreyDock(Vector3 dockPosition, Action moved = null);
-    void EatFood(float foodPiecePerDelay);
+    IFood GetFood();
 }

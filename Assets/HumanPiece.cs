@@ -10,6 +10,7 @@ public class HumanPiece : MonoBehaviour
 
     public void Scatter()
     {
+        transform.parent = null;
         RandomRotation();
         MoveToTarget().OnComplete(() => Destroy());
     }
