@@ -78,7 +78,7 @@ public class MiniGame : MonoBehaviour, IMiniGame
             _cook.Animation.PlayEating(true);
             _platform.GetFood();
 
-            yield return Yielder.WaitForSeconds(0.5f);
+            yield return Yielder.WaitForSeconds(0.2f);
         }
 
         _cook.Animation.PlayEating(false);
