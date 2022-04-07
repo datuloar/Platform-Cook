@@ -1,4 +1,6 @@
-﻿public interface IPlayWindow : IWindow
-{
+﻿using System;
 
+public interface IPlayWindow : IWindow
+{
+    event Action RestartGameButtonClicked;
 }

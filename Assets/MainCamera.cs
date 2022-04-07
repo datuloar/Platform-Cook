@@ -48,6 +48,8 @@ public class MainCamera : MonoBehaviour, ICamera
 
     public void SetTarget(ICameraTarget target) => _target = target;
 
+    public void StopFollowing() => _canFollowing = false;
+
     private void FollowTarget()
     {
         if (_canFollowing)

@@ -67,4 +67,9 @@ public class Cook : MonoBehaviour, ICook
     public void FreezeMovement() => _movement.Freeze();
 
     public void UnfreezeMovement() => _movement.Unfreeze();
+
+    public void Eat(IFood food)
+    {
+        _belly.AddFood(food);
+    }
 }

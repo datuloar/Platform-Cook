@@ -69,6 +69,9 @@ public class MiniGame : MonoBehaviour, IMiniGame
 
             yield return null;
         }
+
+        _camera.StopFollowing();
+        GameOver?.Invoke();
     }
 
     private IEnumerator CookEatingFood()
@@ -76,9 +79,9 @@ public class MiniGame : MonoBehaviour, IMiniGame
         while (_platform.HasFood)
         {
             _cook.Animation.PlayEating(true);
-            _platform.GetFood();
+            _cook.Eat(_platform.GetFood());
 
-            yield return Yielder.WaitForSeconds(0.2f);
+            yield return Yielder.WaitForSeconds(0.3f);
         }
 
         _cook.Animation.PlayEating(false);

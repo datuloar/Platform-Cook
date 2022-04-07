@@ -522,9 +522,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.095916644
-  m_Height: 1.3838323
+  m_Height: 1.9559835
   m_Direction: 1
-  m_Center: {x: -0.0027923286, y: 0.6686459, z: -0.011185676}
+  m_Center: {x: -0.0027923286, y: 0.9547215, z: -0.011185676}
 --- !u!114 &8726638240147578203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1047,7 +1047,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4314881909952182825}
   m_LocalRotation: {x: -0.4798465, y: 0.51884365, z: 0.48044413, w: 0.51934767}
-  m_LocalPosition: {x: -0.034904614, y: -0.2313256, z: 0.002640312}
+  m_LocalPosition: {x: 0.023, y: -0.118, z: 0.003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2927671721973154033}
@@ -1068,11 +1068,11 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 1
+  useRigidbodyForVelocity: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -1083,7 +1083,7 @@ ParticleSystem:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1092,7 +1092,7 @@ ParticleSystem:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -1136,8 +1136,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.6
-      minScalar: 0.4
+      scalar: 3
+      minScalar: 2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1814,7 +1814,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2

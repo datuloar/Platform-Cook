@@ -22,6 +22,19 @@ public class Game : IGame
         _camera = camera;
         _level = level;
         _miniGame = miniGame;
+
+        _viewport.GetStartWindow().StartGameButtonClicked += OnStartGameButtonClicked;
+        _viewport.GetVictoryWindow().NextButtonClicked += Restart;
+        _viewport.GetDefeatWindow().RestartButtonClicked += Restart;
+        _viewport.GetPlayWindow().RestartGameButtonClicked += Restart;
+    }
+
+    ~Game()
+    {
+        _viewport.GetStartWindow().StartGameButtonClicked -= OnStartGameButtonClicked;
+        _viewport.GetVictoryWindow().NextButtonClicked -= Restart;
+        _viewport.GetDefeatWindow().RestartButtonClicked -= Restart;
+        _viewport.GetPlayWindow().RestartGameButtonClicked -= Restart;
     }
 
     public void Start()
@@ -32,7 +45,6 @@ public class Game : IGame
 
         _gameEngine.GetInputDevice().Disable();
 
-        _viewport.GetStartWindow().StartGameButtonClicked += OnStartGameButtonClicked;
         _house.GetPlatform().FoodEnded += OnPlatformFoodEnded;
     }
 
@@ -111,5 +123,13 @@ public class Game : IGame
         _house.GetPlatform().FoodEnded -= OnPlatformFoodEnded;
 
         _miniGame.StartGame();
+        _miniGame.GameOver += OnGameOver;
+    }
+
+    private void OnGameOver()
+    {
+        _isPlaying = false;
+
+        _viewport.GetVictoryWindow().Open();
     }
 }
