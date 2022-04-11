@@ -470,7 +470,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Eating
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6224063806852326297}
@@ -484,7 +484,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -4572549976004244999, guid: f483b7426ecace7488dc4caf6d90400c, type: 3}
+  m_Motion: {fileID: 3311838641924317321, guid: e8d234adc3a33f04687e261112951ac7, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
