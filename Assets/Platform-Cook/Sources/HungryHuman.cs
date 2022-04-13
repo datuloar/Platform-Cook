@@ -6,14 +6,14 @@ using UnityEngine.AI;
 
 public class HungryHuman : MonoBehaviour, IHungryHuman
 {
-    [SerializeField] private float _delayBetweenMeals = 1f;
-    [SerializeField] private int _amountFoodEatenPerDelay = 1;
     [SerializeField] private HumanHealth _health;
     [SerializeField] private HumanAnimation _animation;
     [SerializeField] private NavMeshAgent _navMeshAgent;
     [SerializeField] private HumanSkin _skin;
     [SerializeField] private HumanBelly _belly;
 
+    private float _delayBetweenMeals;
+    private int _amountFoodEatenPerDelay;
     private IPlatform _platform;
     private Coroutine _eating;
 
@@ -29,9 +29,17 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
         _health.HealthPointsEnded -= OnHealthPointsEnded;
     }
 
-    public void Init(IPlatform platform)
+    public void Init(IPlatform platform, HungryHumanConfig config)
     {
         _platform = platform;
+        _health.Init(config.HealthPoints, config.HealthPoints);
+
+        foreach (var food in config.Foods)
+            _belly.AddFood(food);
+
+        _amountFoodEatenPerDelay = config.AmountFoodEatenPerDelay;
+        _delayBetweenMeals = config.DelayBetweenMeals;
+        _navMeshAgent.speed = config.Speed;
     }
 
     public void StartMove()
@@ -61,24 +69,27 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
         _animation.PlayEating(true);       
     }
 
-    private void Die()
-    {
-        Dead?.Invoke();
-        Destroy(gameObject);
-        _skin.Destroy();
-    }
-
     private IEnumerator Eating()
     {
         yield return Yielder.WaitForSeconds(_delayBetweenMeals);
 
         while (_platform.HasFood)
         {
-            var food = _platform.GetFood();
-            _belly.AddFood(food);
+            for (int i = 0; i < _amountFoodEatenPerDelay; i++)
+            {
+                IFood food = _platform.GetFood();
+                _belly.AddFood(food);
+            }
 
             yield return Yielder.WaitForSeconds(_delayBetweenMeals);
         }
+    }
+
+    private void Die()
+    {
+        Dead?.Invoke();
+        Destroy(gameObject);
+        _skin.Destroy();
     }
 
     private void OnHealthPointsEnded()

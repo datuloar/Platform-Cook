@@ -7,7 +7,7 @@ public class Cook : MonoBehaviour, ICook
 {
     [SerializeField] private Attack _attack;
     [SerializeField] private AttackZoneTrigger _attackZoneTrigger;
-    [SerializeField] private PhysicsMovement _movement;
+    [SerializeField] private Movement _movement;
     [SerializeField] private HumanAnimation _animation;
     [SerializeField] private HumanHealth _health;
     [SerializeField] private HumanBelly _belly;
@@ -54,6 +54,7 @@ public class Cook : MonoBehaviour, ICook
     {
         if (_attack.CanAttack)
         {
+            Taptic.Medium();
             _attack.StartAttack();
             _animation.PlayAttack();
         }

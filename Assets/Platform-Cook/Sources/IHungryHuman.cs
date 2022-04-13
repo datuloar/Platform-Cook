@@ -1,5 +1,5 @@
 ﻿public interface IHungryHuman : IHuman
 {
-    void Init(IPlatform platform);
+    void Init(IPlatform platform, HungryHumanConfig config);
     void StartMove();
 }

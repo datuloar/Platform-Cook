@@ -5,17 +5,19 @@ using UnityEngine;
 
 public class HumanHealth : MonoBehaviour
 {
-    [SerializeField] private float _currentHealthPoints;
-    [SerializeField] private float _maxHealthPoints;
+    public float CurrentHealthPoints { get; private set; }
+    public float MaxHealthPoints { get; private set; }
 
-    public float CurrentHealthPoints => _currentHealthPoints;
-
+    public event Action HealthPointsChanged;
     public event Action HealthPointsEnded;
 
-    private void OnValidate()
+    public void Init(float currentHealthPoints, float maxHealthPoints)
     {
-        if (_currentHealthPoints > _maxHealthPoints)
-            _currentHealthPoints = _maxHealthPoints;
+        CurrentHealthPoints = currentHealthPoints;
+        MaxHealthPoints = maxHealthPoints;
+
+        if (CurrentHealthPoints > MaxHealthPoints)
+            CurrentHealthPoints = MaxHealthPoints;
     }
 
     public void Damage(float value)
@@ -23,13 +25,15 @@ public class HumanHealth : MonoBehaviour
         if (value < 0)
             throw new ArgumentException("Value can't be less zero");
 
-        _currentHealthPoints -= value;
+        CurrentHealthPoints -= value;
 
-        if (IsHealthPointsEnded(_currentHealthPoints))
+        HealthPointsChanged?.Invoke();
+
+        if (IsHealthPointsEnded(CurrentHealthPoints))
             HealthPointsEnded?.Invoke();
     }
 
-    public void ResetHealthPoints() => _currentHealthPoints = _maxHealthPoints;
+    public void ResetHealthPoints() => CurrentHealthPoints = MaxHealthPoints;
 
     private bool IsHealthPointsEnded(float currentHealthPoints) => currentHealthPoints <= 0;
 }

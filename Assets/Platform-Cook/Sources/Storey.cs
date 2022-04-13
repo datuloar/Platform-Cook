@@ -7,6 +7,7 @@ public class Storey : MonoBehaviour, IStorey
 {
     [SerializeField] private Transform _platformDock;
     [SerializeField] private StoreyWaveSettings _waveSettings;
+    [SerializeField] private HungryHumanConfig[] _hungryHumanConfigs;
 
     private IHumansFactory _humansFactory;
     private Coroutine _spawningHungryHumans;
@@ -51,11 +52,27 @@ public class Storey : MonoBehaviour, IStorey
         while (true)
         {
             _humansCount++;
-            var human = CreateHungryHuman(target);
+
+            var randomConfig = _hungryHumanConfigs[UnityEngine.Random.Range(0, _hungryHumanConfigs.Length)]; 
+            var human = CreateHungryHuman(target, randomConfig);
+
             human.Dead += OnHumanDead;
 
             yield return Yielder.WaitForSeconds(_waveSettings.DelayBetweenSpawn);
         }
+    }
+
+    private IHungryHuman CreateHungryHuman(IPlatform target, HungryHumanConfig config)
+    {
+        var randomIndexPosition = UnityEngine.Random.Range(0, _waveSettings.HumansPositions.Count);
+
+        var human = _humansFactory.CreateHungryHuman(_waveSettings.HumansPositions[randomIndexPosition].position,
+            _waveSettings.HumansPositions[randomIndexPosition].rotation.eulerAngles);
+
+        human.Init(target, config);
+        human.StartMove();
+
+        return human;
     }
 
     private void OnHumanDead()
@@ -64,19 +81,6 @@ public class Storey : MonoBehaviour, IStorey
 
         if (_humansCount <= 0 && _isWavesEnded)
             HumansDied?.Invoke();
-    }
-
-    private IHungryHuman CreateHungryHuman(IPlatform target)
-    {
-        var randomIndexPosition = UnityEngine.Random.Range(0, _waveSettings.HumansPositions.Count);
-
-        var human = _humansFactory.CreateHungryHuman(_waveSettings.HumansPositions[randomIndexPosition].position,
-            _waveSettings.HumansPositions[randomIndexPosition].rotation.eulerAngles);
-
-        human.Init(target);
-        human.StartMove();
-
-        return human;
     }
 
     private void OnWavesEnded()
