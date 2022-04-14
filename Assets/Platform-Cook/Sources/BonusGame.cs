@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniGame : MonoBehaviour, IMiniGame
+public class BonusGame : MonoBehaviour, IBonusGame
 {
     [SerializeField] private List<ScoreBlock> _scoreBlocks;
 

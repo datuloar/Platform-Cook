@@ -6,6 +6,8 @@ public interface IHouse : IUpdateLoop
 
     IPlatform GetPlatform();
     ICook CreateCook();
-    void MoveNextStorey(Action moved = null);
-    void StartWaves(Action ended = null);
+    void MoveToStorey(Action moved = null);
+    void StartWaves(Action completed = null);
+    void StartBasement(Action completed = null);
+    void NextStorey();
 }

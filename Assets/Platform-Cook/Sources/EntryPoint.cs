@@ -5,22 +5,22 @@ public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private UnityGameEngine _gameEngine;
     [SerializeField] private Viewport _viewport;
-    [SerializeField] private Platform _platform;
-    [SerializeField] private List<Storey> _storeys;
+    [SerializeField] private House _house;
     [SerializeField] private MainCamera _camera;
-    [SerializeField] private MiniGame _miniGame;
+    [SerializeField] private BonusGame _bonusGame;
     [SerializeField] private string _nextLevelName;
 
     private IGame _game;
 
     private void Awake()
     {
-        var assetsProvider = new AssetsProvider();
         var level = new Level(_nextLevelName);
+        var assetsProvider = new AssetsProvider();
         var humansFactory = new HumansFactory(assetsProvider);
-        var house = new House(_storeys, _platform, humansFactory);
 
-        _game = new Game(_viewport, house, _camera, level, _miniGame, _gameEngine);
+        _house.Init(humansFactory);
+
+        _game = new Game(_viewport, _house, _camera, level, _bonusGame, _gameEngine);
     }
 
     private void Start()

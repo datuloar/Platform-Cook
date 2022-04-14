@@ -9,19 +9,19 @@ public class Game : IGame
     private readonly IHouse _house;
     private readonly ICamera _camera;
     private readonly ILevel _level;
-    private readonly IMiniGame _miniGame;
+    private readonly IBonusGame _bonusGame;
 
     private bool _isPlaying;
     private Player _player;
 
-    public Game(IViewport viewport, IHouse house, ICamera camera, ILevel level, IMiniGame miniGame, IGameEngine gameEngine)
+    public Game(IViewport viewport, IHouse house, ICamera camera, ILevel level, IBonusGame bonusGame, IGameEngine gameEngine)
     {
         _viewport = viewport;
         _gameEngine = gameEngine;
         _house = house;
         _camera = camera;
         _level = level;
-        _miniGame = miniGame;
+        _bonusGame = bonusGame;
 
         _viewport.GetStartWindow().StartGameButtonClicked += OnStartGameButtonClicked;
         _viewport.GetVictoryWindow().NextButtonClicked += Restart;
@@ -61,7 +61,7 @@ public class Game : IGame
     {
         var cook = _house.CreateCook();
         _camera.SetTarget(cook);
-        _miniGame.Init(cook, _house.GetPlatform(), _camera);
+        _bonusGame.Init(cook, _house.GetPlatform(), _camera);
 
         _player = new Player(cook, _gameEngine.GetInputDevice());       
     }
@@ -82,20 +82,12 @@ public class Game : IGame
         _isPlaying = false;
         _viewport.GetPlayWindow().Close();
         _gameEngine.GetInputDevice().Disable();
+
         _house.GetPlatform().FoodEnded -= OnPlatformFoodEnded;
     }
 
-    private void OnCameraMovedOnStartPoint()
-    {
-        _viewport.GetPlayWindow().Open();
-        _gameEngine.GetInputDevice().Enable();
-        _house.StartWaves(OnWavesEnded);
-    }
 
-    private void OnPlatformFoodEnded()
-    {
-        Lose();
-    }
+    private void OnPlatformFoodEnded() => Lose();
 
     private void OnStartGameButtonClicked()
     {
@@ -103,27 +95,37 @@ public class Game : IGame
         _viewport.GetStartWindow().Close();
     }
 
-    private void OnNextStoreyMoved()
+    private void OnCameraMovedOnStartPoint()
     {
-        _house.StartWaves(OnWavesEnded);
+        _viewport.GetPlayWindow().Open();
+        _gameEngine.GetInputDevice().Enable();
+        _house.StartBasement(OnBasementCompleted);
     }
+    private void OnBasementCompleted() => _house.MoveToStorey(OnStoreyMoved);
 
-    private void OnWavesEnded()
+    private void OnStoreyMoved() => _house.StartWaves(OnStoreyCompleted);
+
+    private void OnStoreyCompleted()
     {
         if (_house.HasNextStorey)
-            _house.MoveNextStorey(OnNextStoreyMoved);
+        {
+            _house.NextStorey();
+            _house.MoveToStorey(OnStoreyMoved);
+        }
         else
-            StartMiniGame();
+        {
+            StartBonusGame();
+        }
     }
 
-    private void StartMiniGame()
+    private void StartBonusGame()
     {
         _viewport.GetPlayWindow().Close();
         _gameEngine.GetInputDevice().Disable();
-        _house.GetPlatform().FoodEnded -= OnPlatformFoodEnded;
+        _bonusGame.StartGame();
 
-        _miniGame.StartGame();
-        _miniGame.GameOver += OnGameOver;
+        _bonusGame.GameOver += OnGameOver;
+        _house.GetPlatform().FoodEnded -= OnPlatformFoodEnded;
     }
 
     private void OnGameOver()

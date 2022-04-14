@@ -74,6 +74,7 @@ public class Platform : MonoBehaviour, IPlatform
             {
                 moved?.Invoke();
                 _isMovingToNextStorey = false;
+                _movingToStoreyDock = null;
             });      
     }
 

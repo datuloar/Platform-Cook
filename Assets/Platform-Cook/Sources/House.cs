@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class House : IHouse
+public class House : MonoBehaviour, IHouse
 {
-    private readonly IReadOnlyList<IStorey> _storeys;
-    private readonly IPlatform _platform;
-    private readonly IHumansFactory _humansFactory;
+    [SerializeField] private Basement _basement;
+    [SerializeField] private List<Storey> _storeys;
+    [SerializeField] private Platform _platform;
+
+    private IHumansFactory _humansFactory;
 
     private int _currentStoreyIndex;
 
-    public House(IReadOnlyList<IStorey> storeys, IPlatform platform, IHumansFactory humansFactory)
+    public bool HasNextStorey => _currentStoreyIndex + 1 < _storeys.Count;
+
+    public void Init(IHumansFactory humansFactory)
     {
-        _storeys = storeys;
-        _platform = platform;
         _humansFactory = humansFactory;
 
-        foreach (var storey in storeys)
+        foreach (var storey in _storeys)
             storey.Init(humansFactory);
     }
-
-    public bool HasNextStorey => _currentStoreyIndex + 1 < _storeys.Count;
 
     public void Tick(float time)
     {
@@ -28,9 +28,19 @@ public class House : IHouse
             storey.Tick(time);
     }
 
-    public void MoveNextStorey(Action moved = null)
+    public void StartBasement(Action completed = null)
+    {
+        _basement.StartCountdown();
+        _basement.TimeOut += (() => completed?.Invoke());
+    }
+
+    public void NextStorey()
     {
         _currentStoreyIndex++;
+    }
+
+    public void MoveToStorey(Action moved = null)
+    {
         _platform.MoveToStoreyDock(_storeys[_currentStoreyIndex].PlatformDockPosition, moved);
     }
 

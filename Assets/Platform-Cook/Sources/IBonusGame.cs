@@ -1,6 +1,6 @@
 ﻿using System;
 
-public interface IMiniGame
+public interface IBonusGame
 {
     event Action GameOver;
 
