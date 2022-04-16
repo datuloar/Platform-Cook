@@ -12,23 +12,13 @@ public class Platform : MonoBehaviour, IPlatform
     [SerializeField] private ArrowPointer _pointer;
     [SerializeField] private UnityGameEngine _gameEngine;
     [SerializeField] private PlatformZoneTrigger _zone;
-    [SerializeField] private List<Food> _food;
+    [SerializeField] private Table _table;
 
     private Coroutine _movingToStoreyDock;
     private bool _isCookInsideZone;
 
-    public int MaxFoodCount { get; private set; }
     public bool IsMovingToNextStorey { get; private set; }
-    public int FoodCount => _food.Count;
-    public bool HasFood => FoodCount > 0;
-
-    public event Action FoodCountChanged;
-    public event Action FoodEnded;
-
-    private void Awake()
-    {
-        MaxFoodCount = _food.Count;
-    }
+    public ITable Table => _table;
 
     private void OnEnable()
     {
@@ -40,21 +30,6 @@ public class Platform : MonoBehaviour, IPlatform
     {
         _zone.Stay -= OnZoneStay;
         _zone.Exit -= OnZoneExit;
-    }
-
-    public IFood GetFood()
-    {
-        var selectedFood = _food.FirstOrDefault();
-        selectedFood.Eat();
-
-        _food.Remove(selectedFood);
-
-        if (!HasFood)
-            FoodEnded?.Invoke();
-
-        FoodCountChanged?.Invoke();
-
-        return selectedFood;
     }
 
     public void MoveToStoreyDock(Vector3 dockPosition, Action moved = null)

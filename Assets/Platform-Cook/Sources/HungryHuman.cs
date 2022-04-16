@@ -74,11 +74,11 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
     {
         yield return Yielder.WaitForSeconds(_delayBetweenMeals);
 
-        while (_platform.HasFood)
+        while (_platform.Table.HasFood)
         {
             for (int i = 0; i < _amountFoodEatenPerDelay; i++)
             {
-                IFood food = _platform.GetFood();
+                IFood food = _platform.Table.GetFood();
                 _belly.AddFood(food);
             }
 

@@ -45,7 +45,7 @@ public class Game : IGame
 
         _gameEngine.GetInputDevice().Disable();
 
-        _house.GetPlatform().FoodEnded += OnPlatformFoodEnded;
+        _house.GetPlatform().Table.FoodEnded += OnPlatformFoodEnded;
     }
 
     public void Tick(float time)
@@ -83,7 +83,7 @@ public class Game : IGame
         _viewport.GetPlayWindow().Close();
         _gameEngine.GetInputDevice().Disable();
 
-        _house.GetPlatform().FoodEnded -= OnPlatformFoodEnded;
+        _house.GetPlatform().Table.FoodEnded -= OnPlatformFoodEnded;
     }
 
 
@@ -125,7 +125,7 @@ public class Game : IGame
         _bonusGame.StartGame();
 
         _bonusGame.GameOver += OnGameOver;
-        _house.GetPlatform().FoodEnded -= OnPlatformFoodEnded;
+        _house.GetPlatform().Table.FoodEnded -= OnPlatformFoodEnded;
     }
 
     private void OnGameOver()

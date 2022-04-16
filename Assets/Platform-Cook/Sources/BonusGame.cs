@@ -76,10 +76,10 @@ public class BonusGame : MonoBehaviour, IBonusGame
 
     private IEnumerator CookEatingFood()
     {
-        while (_platform.HasFood)
+        while (_platform.Table.HasFood)
         {
             _cook.Animation.PlayEating(true);
-            _cook.Eat(_platform.GetFood());
+            _cook.Eat(_platform.Table.GetFood());
 
             yield return Yielder.WaitForSeconds(0.3f);
         }

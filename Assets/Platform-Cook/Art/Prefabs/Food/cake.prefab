@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4894101701545234465}
   - component: {fileID: 7210158380922299627}
   - component: {fileID: 8344665954867936123}
+  - component: {fileID: -1216597620502595754}
   m_Layer: 0
   m_Name: cake
   m_TagString: Untagged
@@ -94,4 +95,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bf7b76bc24b8d4e8fd7451353d0d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _type: 0
   _weight: 10
+--- !u!65 &-1216597620502595754
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9155638446700774718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.26400006, y: 0.24270764, z: 0.26399994}
+  m_Center: {x: 0, y: 0.12185462, z: -0.0033312067}

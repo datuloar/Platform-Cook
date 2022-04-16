@@ -72,4 +72,15 @@ public class Cook : MonoBehaviour, ICook
     {
         _belly.AddFood(food);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out IFood food))
+        {
+            if (food.CanTake)
+            {
+                food.Take();
+            }
+        }
+    }
 }

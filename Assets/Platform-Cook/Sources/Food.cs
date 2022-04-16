@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Food : MonoBehaviour, IFood
 {
+    [SerializeField] private ResourceType _type;
     [SerializeField] private float _weight;
-    
+
     public float Weight => _weight;
-    public bool CanTake { get; private set; }
+    public bool CanTake { get; private set; } = true;
+    public ResourceType Type => _type;
+
+    public event Action<IFood> Taken;
 
     public void Eat()
     {
@@ -18,6 +22,8 @@ public class Food : MonoBehaviour, IFood
     {
         CanTake = false;
         transform.parent = null;
+
+        Taken?.Invoke(this);
     }
 
     public void Hide(bool animate = true)
