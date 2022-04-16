@@ -1,23 +1,13 @@
-﻿using DG.Tweening;
-using System;
+using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Food : MonoBehaviour, IFood
+public class ArrowPointer : MonoBehaviour
 {
-    [SerializeField] private float _weight;
-    
-    public float Weight => _weight;
-    public bool CanTake { get; private set; }
-
-    public void Eat()
+    private void Awake()
     {
-        Hide();
-    }
-
-    public void Take()
-    {
-        CanTake = false;
-        transform.parent = null;
+        Hide(false);
     }
 
     public void Hide(bool animate = true)

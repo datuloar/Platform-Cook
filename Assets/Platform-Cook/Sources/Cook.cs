@@ -54,7 +54,6 @@ public class Cook : MonoBehaviour, ICook
     {
         if (_attack.CanAttack)
         {
-            Taptic.Medium();
             _attack.StartAttack();
             _animation.PlayAttack();
         }

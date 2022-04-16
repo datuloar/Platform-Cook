@@ -2,19 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Basement : MonoBehaviour
+public class FoodStorey : Storey
 {
     [SerializeField] private Coundown _countdown;
-    [SerializeField] private List<Food> _food;
+    [SerializeField] private FoodPool _pool;
     [SerializeField] private int _secondsToCollectFood;
 
-    public event Action TimeOut;
-
-    private void Awake()
-    {
-        foreach (var food in _food)
-            food.Hide(false);
-    }
+    public override event Action Completed;
 
     private void OnEnable()
     {
@@ -26,9 +20,13 @@ public class Basement : MonoBehaviour
         _countdown.Completed -= OnCountdownCompleted;
     }
 
-    public void StartCountdown()
+    public override void Init(IPlatform platform, IHumansFactory humansFactory) { }
+
+    public override void Tick(float time) { }
+
+    public override void StartEvent()
     {
-        foreach (var food in _food)
+        foreach (var food in _pool.Food)
             food.Show();
 
         _countdown.StartCountdown(_secondsToCollectFood);
@@ -36,9 +34,10 @@ public class Basement : MonoBehaviour
 
     private void OnCountdownCompleted()
     {
-        foreach (var food in _food)
+        foreach (var food in _pool.Food)
             food.Hide();
 
-        TimeOut?.Invoke();
+        Completed?.Invoke();
     }
+
 }

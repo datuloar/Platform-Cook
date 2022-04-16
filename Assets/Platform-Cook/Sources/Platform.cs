@@ -9,14 +9,16 @@ public class Platform : MonoBehaviour, IPlatform
 {
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float _moveDuration;
+    [SerializeField] private ArrowPointer _pointer;
+    [SerializeField] private UnityGameEngine _gameEngine;
     [SerializeField] private PlatformZoneTrigger _zone;
     [SerializeField] private List<Food> _food;
 
     private Coroutine _movingToStoreyDock;
     private bool _isCookInsideZone;
-    private bool _isMovingToNextStorey;
 
     public int MaxFoodCount { get; private set; }
+    public bool IsMovingToNextStorey { get; private set; }
     public int FoodCount => _food.Count;
     public bool HasFood => FoodCount > 0;
 
@@ -65,15 +67,24 @@ public class Platform : MonoBehaviour, IPlatform
 
     private IEnumerator MovingToStoreyDock(Vector3 dockPosition, Action moved = null)
     {
+        if (!_isCookInsideZone)
+            _pointer.Show();
+
         yield return new WaitUntil(() => _isCookInsideZone);
 
-        _isMovingToNextStorey = true;
+        _pointer.Hide();
+
+        _gameEngine.GetInputDevice().Disable();
+
+        IsMovingToNextStorey = true;
 
         _rigidbody.DOMove(dockPosition, _moveDuration)
             .OnComplete(() =>
             {
                 moved?.Invoke();
-                _isMovingToNextStorey = false;
+
+                _gameEngine.GetInputDevice().Enable();
+                IsMovingToNextStorey = false;
                 _movingToStoreyDock = null;
             });      
     }
@@ -82,11 +93,6 @@ public class Platform : MonoBehaviour, IPlatform
 
     private void OnZoneStay(ICook cook)
     {
-        if (_isMovingToNextStorey)
-            cook.FreezeMovement();
-        else
-            cook.UnfreezeMovement();
-
         _isCookInsideZone = true;
     }
 }

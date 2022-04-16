@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class House : MonoBehaviour, IHouse
 {
-    [SerializeField] private Basement _basement;
     [SerializeField] private List<Storey> _storeys;
     [SerializeField] private Platform _platform;
 
@@ -19,19 +18,13 @@ public class House : MonoBehaviour, IHouse
         _humansFactory = humansFactory;
 
         foreach (var storey in _storeys)
-            storey.Init(humansFactory);
+            storey.Init(_platform, humansFactory);
     }
 
     public void Tick(float time)
     {
         foreach (var storey in _storeys)
             storey.Tick(time);
-    }
-
-    public void StartBasement(Action completed = null)
-    {
-        _basement.StartCountdown();
-        _basement.TimeOut += (() => completed?.Invoke());
     }
 
     public void NextStorey()
@@ -44,10 +37,10 @@ public class House : MonoBehaviour, IHouse
         _platform.MoveToStoreyDock(_storeys[_currentStoreyIndex].PlatformDockPosition, moved);
     }
 
-    public void StartWaves(Action ended = null)
+    public void StartStoreyEvent(Action ended = null)
     {
-        _storeys[_currentStoreyIndex].StartWaves(_platform);
-        _storeys[_currentStoreyIndex].HumansDied += (() => ended?.Invoke());
+        _storeys[_currentStoreyIndex].StartEvent();
+        _storeys[_currentStoreyIndex].Completed += (() => ended?.Invoke());
     }
 
     public ICook CreateCook() => _humansFactory.CreateCook(Vector3.zero, new Vector3(0, 180));

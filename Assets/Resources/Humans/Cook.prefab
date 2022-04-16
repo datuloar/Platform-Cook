@@ -522,9 +522,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.095916644
-  m_Height: 1.9559835
+  m_Height: 0.6886555
   m_Direction: 1
-  m_Center: {x: -0.0027923286, y: 0.9547215, z: -0.011185676}
+  m_Center: {x: -0.0027923286, y: 0.3210575, z: -0.011185676}
 --- !u!114 &8726638240147578203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -584,8 +584,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8655771af7bc97b4d9a838149bbdf035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentHealthPoints: 100
-  _maxHealthPoints: 100
 --- !u!114 &1069717537717087306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -599,6 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 1
+  _weapon: {fileID: 5884287869057078584}
 --- !u!65 &8773251523651759875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -610,8 +609,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.012096044, y: 0.049159396, z: 0.27764723}
-  m_Center: {x: -0.00000002128282, y: -0.013995244, z: 0.028741376}
+  m_Size: {x: 0.043534655, y: 0.049159545, z: 0.32065332}
+  m_Center: {x: -0.0026282645, y: -0.013995292, z: 0.05024446}
 --- !u!114 &5884287869057078584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,6 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damageValue: 15
+  _collider: {fileID: 8773251523651759875}
 --- !u!1 &1732579494147078775
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,7 +1072,7 @@ ParticleSystem:
   playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 0
+  useRigidbodyForVelocity: 1
   startDelay:
     serializedVersion: 2
     minMaxState: 0

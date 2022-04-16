@@ -99,11 +99,11 @@ public class Game : IGame
     {
         _viewport.GetPlayWindow().Open();
         _gameEngine.GetInputDevice().Enable();
-        _house.StartBasement(OnBasementCompleted);
+        _house.StartStoreyEvent(OnStoreyCompleted);
     }
-    private void OnBasementCompleted() => _house.MoveToStorey(OnStoreyMoved);
 
-    private void OnStoreyMoved() => _house.StartWaves(OnStoreyCompleted);
+    private void OnStoreyMoved() =>
+        _house.StartStoreyEvent(OnStoreyCompleted);
 
     private void OnStoreyCompleted()
     {
