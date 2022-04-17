@@ -9,7 +9,7 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
 {
     [SerializeField] private HumanHealth _health;
     [SerializeField] private HumanAnimation _animation;
-    [SerializeField] private NavMeshAgent _navMeshAgent;
+    [SerializeField] private AIMovement _movement;
     [SerializeField] private HumanSkin _skin;
     [SerializeField] private HumanBelly _belly;
 
@@ -40,7 +40,7 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
 
         _amountFoodEatenPerDelay = config.AmountFoodEatenPerDelay;
         _delayBetweenMeals = config.DelayBetweenMeals;
-        _navMeshAgent.speed = config.Speed;
+        _movement.ChangeSpeed(config.Speed);
     }
 
     public void StartMove()
@@ -50,7 +50,7 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
         if (_eating != null)
             StopCoroutine(_eating);
 
-        _navMeshAgent.SetDestination(_platform.transform.position);
+        _movement.Move(_platform.transform.position);
         _animation.PlayMovement(true);
     }
 
@@ -66,6 +66,7 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
 
         _eating = StartCoroutine(Eating());
 
+        _movement.Stop();
         _animation.PlayMovement(false);
         _animation.PlayEating(true);       
     }
@@ -103,6 +104,14 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
         if (other.TryGetComponent(out PlatformZoneTrigger platformZoneTrigger))
         {
             StartEating();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out PlatformZoneTrigger platformZoneTrigger))
+        {
+            StartMove();
         }
     }
 }

@@ -472,7 +472,7 @@ GameObject:
   - component: {fileID: -8475707374455942636}
   - component: {fileID: 1712147031980288582}
   - component: {fileID: 1069717537717087306}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732579494147078775}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.004, y: 0.017, z: -0.01}
+  m_LocalPosition: {x: -0.004, y: 0.058, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5422907756428255233}
@@ -6125,8 +6125,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.34310156, y: 0.39017302, z: 0.40337524}
-  m_Center: {x: -0.009599835, y: 0.3049135, z: 0.1608182}
+  m_Size: {x: 0.30367637, y: 0.59588623, z: 0.30790138}
+  m_Center: {x: -0.0085936785, y: 0.31235474, z: 0.18648413}
 --- !u!114 &8806435435257508865
 MonoBehaviour:
   m_ObjectHideFlags: 0

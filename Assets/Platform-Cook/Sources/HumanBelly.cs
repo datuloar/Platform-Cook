@@ -15,6 +15,7 @@ public class HumanBelly : MonoBehaviour, IHumanBelly
 
     public void AddFood(IFood food)
     {
+        food.Hide();
         _food.Add(food);
         Grow();
     }

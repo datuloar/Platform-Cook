@@ -6,9 +6,10 @@ public class Food : MonoBehaviour, IFood
 {
     [SerializeField] private ResourceType _type;
     [SerializeField] private float _weight;
+    [SerializeField] private bool _canTake = true;
 
     public float Weight => _weight;
-    public bool CanTake { get; private set; } = true;
+    public bool CanTake => _canTake;
     public ResourceType Type => _type;
 
     public event Action<IFood> Taken;
@@ -20,7 +21,7 @@ public class Food : MonoBehaviour, IFood
 
     public void Take()
     {
-        CanTake = false;
+        _canTake = false;
         transform.parent = null;
 
         Taken?.Invoke(this);

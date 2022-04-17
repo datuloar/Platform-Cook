@@ -13,6 +13,8 @@ public class Cook : MonoBehaviour, ICook
     [SerializeField] private HumanBelly _belly;
     [SerializeField] private ParticleSystem _fartTrailVfx;
 
+    private ITable _table;
+
     public event Action Dead;
 
     public IHumanBelly Belly => _belly;
@@ -26,6 +28,11 @@ public class Cook : MonoBehaviour, ICook
     private void OnDisable()
     {
         _attackZoneTrigger.Entered -= OnAttackZoneStay;
+    }
+
+    public void Init(ITable table)
+    {
+        _table = table;
     }
 
     public void Tick(float time)
@@ -80,6 +87,7 @@ public class Cook : MonoBehaviour, ICook
             if (food.CanTake)
             {
                 food.Take();
+                _table.AddFood(food);
             }
         }
     }

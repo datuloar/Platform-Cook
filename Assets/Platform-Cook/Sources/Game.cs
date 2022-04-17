@@ -59,9 +59,12 @@ public class Game : IGame
 
     private void InitializationComponents()
     {
-        var cook = _house.CreateCook();
+        IPlatform platform = _house.GetPlatform();
+        ICook cook = _house.CreateCook();
+
+        cook.Init(platform.Table);
         _camera.SetTarget(cook);
-        _bonusGame.Init(cook, _house.GetPlatform(), _camera);
+        _bonusGame.Init(cook, platform, _camera);
 
         _player = new Player(cook, _gameEngine.GetInputDevice());       
     }

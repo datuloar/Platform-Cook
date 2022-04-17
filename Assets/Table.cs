@@ -7,6 +7,7 @@ public class Table : MonoBehaviour, ITable
 {
     [SerializeField] private FoodStack _stack;
     [SerializeField] private int _maxCapacity;
+    [SerializeField] private List<Food> _starterFood;
 
     private Stack<IFood> _food = new Stack<IFood>();
 
@@ -16,6 +17,12 @@ public class Table : MonoBehaviour, ITable
 
     public event Action FoodCountChanged;
     public event Action FoodEnded;
+
+    private void Start()
+    {
+        foreach (var food in _starterFood)
+            AddFood(food);
+    }
 
     public void AddFood(IFood food)
     {
@@ -31,6 +38,9 @@ public class Table : MonoBehaviour, ITable
         _stack.Remove(food);
 
         FoodCountChanged?.Invoke();
+
+        if (!HasFood)
+            FoodEnded?.Invoke();
 
         return food;
     }

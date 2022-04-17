@@ -7,7 +7,7 @@ public abstract class Movement : MonoBehaviour
     public abstract float Velocity { get; }
     public bool IsMoving { get; protected set; }
 
-    public abstract void ChangeSpeed(int speed);
+    public abstract void ChangeSpeed(float speed);
 
     public abstract void Move(Vector3 direction);
 

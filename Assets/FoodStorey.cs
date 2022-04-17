@@ -9,7 +9,6 @@ public class FoodStorey : Storey
     [SerializeField] private Coundown _countdown;
     [SerializeField] private int _secondsToCollectFood;
 
-    private IPlatform _platform;
     private List<IFood> _food = new List<IFood>();
 
     public override event Action Completed;
@@ -35,10 +34,7 @@ public class FoodStorey : Storey
             food.Taken -= OnFoodTaken;
     }
 
-    public override void Init(IPlatform platform, IHumansFactory humansFactory)
-    {
-        _platform = platform;
-    }
+    public override void Init(IPlatform platform, IHumansFactory humansFactory) { }
 
     public override void Tick(float time) { }
 
@@ -70,7 +66,6 @@ public class FoodStorey : Storey
 
     private void OnFoodTaken(IFood food)
     {
-        _platform.Table.AddFood(food);
         _food.Remove(food);
     }
 

@@ -38,7 +38,7 @@ public class FoodStack : ResourcesStack
     }
 
     public override Vector3 CalculateEndRotation(Transform container, Transform stackable) =>
-        Vector3.up * Random.Range(-10, 10);
+        Vector3.up * Random.Range(-90, 90);
 
     public override Vector3 CalculateAddEndPosition(Transform container, Transform stackable)
     {

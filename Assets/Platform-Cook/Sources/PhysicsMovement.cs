@@ -9,7 +9,7 @@ public class PhysicsMovement : Movement
 
     public override float Velocity => _rigidbody.velocity.magnitude;
 
-    public override void ChangeSpeed(int speed)
+    public override void ChangeSpeed(float speed)
     {
         if (speed < 0)
             throw new ArgumentException();
