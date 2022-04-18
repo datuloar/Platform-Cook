@@ -1695,7 +1695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315963191}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.292, y: 0.407, z: -0.281}
+  m_LocalPosition: {x: -0.143, y: -0.03, z: -0.081}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 58517920}
@@ -1714,18 +1714,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stackContainer: {fileID: 315963192}
-  _animationDuration: 1.5
+  _animationDuration: 0.3
   _scalePunch:
-    _enabled: 0
-    _value: 1.1
+    _enabled: 1
+    _value: 0.3
   _jumpPower:
     _enabled: 1
-    _value: 0.5
-  _size: {x: 3, y: 3}
-  _height: 4
-  _xOffset: 0.3
-  _yOffset: 0.3
-  _debugColor: {r: 0.100138426, g: 1, b: 0, a: 1}
+    _value: 0.3
+  _offset: {x: -0.7, y: -0.9, z: -0.7}
+  _countStack: {x: 3, y: 7, z: 3}
 --- !u!1 &354420111
 GameObject:
   m_ObjectHideFlags: 0
@@ -7626,6 +7623,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfdfed13f3ca3d43905ffc8aaa86365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hideDuration: 1
+  _showDuration: 0.5
 --- !u!1 &1679276949
 GameObject:
   m_ObjectHideFlags: 0

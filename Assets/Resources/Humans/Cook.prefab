@@ -470,8 +470,8 @@ GameObject:
   - component: {fileID: 8726638240147578203}
   - component: {fileID: 2940361668531584122}
   - component: {fileID: -8475707374455942636}
-  - component: {fileID: 1712147031980288582}
   - component: {fileID: 1069717537717087306}
+  - component: {fileID: 1163171687084289663}
   m_Layer: 7
   m_Name: Cook
   m_TagString: Untagged
@@ -541,7 +541,7 @@ MonoBehaviour:
   _attackZoneTrigger: {fileID: 8806435435257508865}
   _movement: {fileID: 2940361668531584122}
   _animation: {fileID: -8475707374455942636}
-  _health: {fileID: 1712147031980288582}
+  _health: {fileID: 1163171687084289663}
   _belly: {fileID: 1764333367763746415}
   _fartTrailVfx: {fileID: 4314881909967191837}
 --- !u!114 &2940361668531584122
@@ -572,18 +572,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 5017194319821322935}
---- !u!114 &1712147031980288582
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601185593638172659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8655771af7bc97b4d9a838149bbdf035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1069717537717087306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +586,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cooldown: 0.5
   _weapon: {fileID: 5884287869057078584}
+--- !u!114 &1163171687084289663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1601185593638172659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845d4de8811d62744a390f0711019b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &8773251523651759875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -609,8 +609,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.043534655, y: 0.049159545, z: 0.32065332}
-  m_Center: {x: -0.0026282645, y: -0.013995292, z: 0.05024446}
+  m_Size: {x: 0.1503592, y: 0.19151126, z: 0.31493437}
+  m_Center: {x: -0.0011818659, y: -0.0031457369, z: 0.047385175}
 --- !u!114 &5884287869057078584
 MonoBehaviour:
   m_ObjectHideFlags: 0

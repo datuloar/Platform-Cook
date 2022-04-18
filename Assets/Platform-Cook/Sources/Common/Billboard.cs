@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FaceToCamera : MonoBehaviour
+public class Billboard : MonoBehaviour
 {
     private Transform _camera;
 

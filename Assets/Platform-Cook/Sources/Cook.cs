@@ -9,7 +9,7 @@ public class Cook : MonoBehaviour, ICook
     [SerializeField] private AttackZoneTrigger _attackZoneTrigger;
     [SerializeField] private Movement _movement;
     [SerializeField] private HumanAnimation _animation;
-    [SerializeField] private HumanHealth _health;
+    [SerializeField] private Health _health;
     [SerializeField] private HumanBelly _belly;
     [SerializeField] private ParticleSystem _fartTrailVfx;
 

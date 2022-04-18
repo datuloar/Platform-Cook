@@ -11,9 +11,9 @@ public abstract class ResourcesStack : MonoBehaviour
 
     private List<Transform> _transforms = new List<Transform>();
 
-    public abstract Vector3 CalculateEndRotation(Transform container, Transform stackable);
+    public abstract Vector3 CalculateEndRotation(Transform container, IResource resource);
 
-    public abstract Vector3 CalculateAddEndPosition(Transform container, Transform stackable);
+    public abstract Vector3 CalculateAddEndPosition(Transform container, IResource resource);
 
     public abstract void OnRemove(Transform removeTransform);
 
@@ -21,8 +21,8 @@ public abstract class ResourcesStack : MonoBehaviour
 
     public void Add(IResource resource)
     {
-        Vector3 endPosition = CalculateAddEndPosition(_stackContainer, resource.transform);
-        Vector3 endRotation = CalculateEndRotation(_stackContainer, resource.transform);
+        Vector3 endPosition = CalculateAddEndPosition(_stackContainer, resource);
+        Vector3 endRotation = CalculateEndRotation(_stackContainer, resource);
         Vector3 defaultScale = resource.transform.localScale;
 
         resource.transform.DOComplete(true);

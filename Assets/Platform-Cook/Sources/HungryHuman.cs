@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class HungryHuman : MonoBehaviour, IHungryHuman
 {
-    [SerializeField] private HumanHealth _health;
+    [SerializeField] private Health _health;
     [SerializeField] private HumanAnimation _animation;
     [SerializeField] private AIMovement _movement;
     [SerializeField] private HumanSkin _skin;

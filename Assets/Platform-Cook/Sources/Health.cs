@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HumanHealth : MonoBehaviour
+public class Health : MonoBehaviour
 {
     public float CurrentHealthPoints { get; private set; }
     public float MaxHealthPoints { get; private set; }

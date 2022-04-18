@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Food : MonoBehaviour, IFood
 {
+    [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] private ResourceType _type;
     [SerializeField] private float _weight;
     [SerializeField] private bool _canTake = true;
@@ -11,6 +12,8 @@ public class Food : MonoBehaviour, IFood
     public float Weight => _weight;
     public bool CanTake => _canTake;
     public ResourceType Type => _type;
+
+    public float Height => _meshRenderer.bounds.size.y;
 
     public event Action<IFood> Taken;
 
