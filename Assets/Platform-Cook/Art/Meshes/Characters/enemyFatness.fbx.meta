@@ -1,8 +1,29 @@
 fileFormatVersion: 2
-guid: dc1b2f53227d59544a2051a620386b0f
+guid: fa4e006ace18eaa46a1e09368d39cb2e
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: 6988806294395837718
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|CharacterEndEating
+  - first:
+      74: -797260069752779605
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|EnemyRun
+  - first:
+      74: -1937210310696772981
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Fly
+  - first:
+      74: 7856385207008650482
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Idle.001
+  - first:
+      74: 6710110853728549105
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Run
+  - first:
+      74: -1964098605881642833
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Eating
+  - first:
+      74: -456487948552762714
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Run
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -15,8 +36,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'Hips' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -24,7 +44,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -35,7 +55,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.3
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -78,12 +98,7 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton:
-    - name: fly(Clone)
-      parentName: 
-      position: {x: 0.000000022540917, y: 2.3283067e-10, z: -0.0000000050167728}
-      rotation: {x: -0.00000004344838, y: 1, z: 0.00000015645493, w: 0.000000043711385}
-      scale: {x: 1.0000002, y: 0.9999998, z: 1.0000001}
+    skeleton: []
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -91,8 +106,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
-    rootMotionBoneName: 
+    globalScale: 0.3
+    rootMotionBoneName: Skelet.c.002
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -100,7 +115,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 
