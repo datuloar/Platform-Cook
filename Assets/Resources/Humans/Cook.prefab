@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8750877766480463305}
   - component: {fileID: 5042175146703922056}
+  - component: {fileID: 4796954458042216700}
   m_Layer: 0
   m_Name: Stickman_heads_sphere
   m_TagString: Untagged
@@ -222,11 +223,30 @@ SkinnedMeshRenderer:
   - {fileID: 10417397263200050}
   m_BlendShapeWeights:
   - 0
-  m_RootBone: {fileID: 7296288397935455759}
+  m_RootBone: {fileID: 4436805663696350335, guid: 3b594f30d2cc14444a0fd1f2fbf147fd, type: 3}
   m_AABB:
     m_Center: {x: -0.0019104928, y: 0.26510268, z: 0.046790324}
     m_Extent: {x: 0.18068193, y: 0.29269445, z: 0.17104262}
   m_DirtyAABB: 0
+--- !u!95 &4796954458042216700
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248714842959058660}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 18d8f201a99210848ad944964ec11de3, type: 3}
+  m_Controller: {fileID: 9100000, guid: 7e965f3bfbfdee444b4c67b96cfbf618, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &372974721372491019
 GameObject:
   m_ObjectHideFlags: 0
