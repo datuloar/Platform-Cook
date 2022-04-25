@@ -11,13 +11,13 @@ public abstract class ResourcesStack : MonoBehaviour
 
     private List<Transform> _transforms = new List<Transform>();
 
-    public abstract Vector3 CalculateEndRotation(Transform container, IResource resource);
+    protected abstract Vector3 CalculateEndRotation(Transform container, IResource resource);
 
-    public abstract Vector3 CalculateAddEndPosition(Transform container, IResource resource);
+    protected abstract Vector3 CalculateAddEndPosition(Transform container, IResource resource);
 
-    public abstract void OnRemove(Transform removeTransform);
+    protected abstract void OnRemove(IResource resource);
 
-    public abstract void Sort(List<Transform> unsortedTransforms);
+    protected abstract void Sort(List<Transform> unsortedTransforms);
 
     public void Add(IResource resource)
     {
@@ -46,7 +46,7 @@ public abstract class ResourcesStack : MonoBehaviour
 
         int removedIndex = _transforms.IndexOf(resource.transform);
         _transforms.RemoveAt(removedIndex);
-        OnRemove(resource.transform);
+        OnRemove(resource);
 
         Sort(_transforms);
     }

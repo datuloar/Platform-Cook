@@ -1,78 +1,128 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FoodStack : ResourcesStack
 {
-    [SerializeField] private Vector3 _offset;
-    [SerializeField] private Vector3Int _countStack;
+    [Space(15f)]
+    [SerializeField] private Vector2Int _size;
+    [SerializeField] private int _height;
+    [SerializeField] private float _xDistance;
+    [SerializeField] private float _yDistance;
 
-    private Vector3Int _currentCountStack = new Vector3Int(1, 1, 1);
-    private int _topStack = 0;
+    private Stack[,] _matrix;
 
-    public override Vector3 CalculateAddEndPosition(Transform container, IResource resource)
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
     {
-        Vector3 foodScale = container.InverseTransformVector(resource.transform.lossyScale);
+        Gizmos.color = Color.red;
 
-        var endPosition = foodScale / 2;
-        endPosition.x += (foodScale.x + _offset.x) * (_countStack.x / 2 - _currentCountStack.x);
-        endPosition.y += (resource.Height) * (_currentCountStack.y - 1);
-        endPosition.z += (foodScale.z + _offset.z) * (_countStack.z / 2 - _currentCountStack.z);
-
-        _currentCountStack.x += 1;
-
-        if (_currentCountStack.x > _countStack.x)
+        for (int y = 0; y < _size.y; y++)
         {
-            _currentCountStack.x = 1;
-            _currentCountStack.z += 1;
-        }
-
-        if (_currentCountStack.z > _countStack.z)
-        {
-            _currentCountStack.z = 1;
-
-            if (_currentCountStack.y < _countStack.y)
-                _currentCountStack.y += 1;
-            else
-                _topStack += 1;
-        }
-
-        return endPosition;
-    }
-
-    public override void OnRemove(Transform removeTransform)
-    {
-        RecalculatePosition();
-    }
-
-    private void RecalculatePosition()
-    {
-        _currentCountStack.x -= 1;
-
-        if (_currentCountStack.x < 1)
-        {
-            _currentCountStack.x = _countStack.x;
-            _currentCountStack.z -= 1;
-        }
-
-        if (_currentCountStack.z < 1)
-        {
-            _currentCountStack.z = _countStack.z;
-
-            if (_topStack == 0)
+            for (int x = 0; x < _size.x; x++)
             {
-                if (_currentCountStack.y > 1)
-                    _currentCountStack.y -= 1;
-            }
-            else
-            {
-                _topStack -= 1;
+                var position = transform.TransformPoint(new Vector3(x * _xDistance, 0, y * _yDistance));
+                Gizmos.DrawSphere(position, 0.05f);
             }
         }
     }
+#endif
 
-    public override Vector3 CalculateEndRotation(Transform container, IResource resource) =>
-        Vector3.up * Random.Range(-20, 20);
+    private void Awake()
+    {
+        _matrix = new Stack[_size.x, _size.y];
 
-    public override void Sort(List<Transform> unsortedTransforms) { }
+        for (int y = 0; y < _size.y; y++)
+            for (int x = 0; x < _size.x; x++)
+                _matrix[x, y] = new Stack();
+    }
+
+    protected override Vector3 CalculateAddEndPosition(Transform container, IResource resource)
+    {
+        var x = GetRandomIndex(_size.x);
+        var y = GetRandomIndex(_size.y);
+
+        _matrix[x, y].Add(resource);
+
+        var count = _matrix[x, y].Count < _height ? _matrix[x, y].Count : _height;
+
+        var horizontalOffset = new Vector3(x * _xDistance, 0, y * _yDistance);
+
+
+        if (_matrix[x, y].LastResource != null)
+        {
+            return  Vector3.up* count * _matrix[x, y].LastResource.Height + horizontalOffset;
+        }
+
+        return Vector3.up + horizontalOffset;
+    }
+
+    protected override Vector3 CalculateEndRotation(Transform container, IResource resource)
+    {
+        return Vector3.up * Random.Range(-10, 10);
+    }
+
+    protected override void OnRemove(IResource resource)
+    {
+        foreach (var stack in _matrix)
+            if (stack.Remove(resource))
+                break;
+    }
+
+    protected override void Sort(List<Transform> unsortedTransforms)
+    {
+        return;
+    }
+
+    private int GetRandomIndex(int maxIndex)
+    {
+        var half = Mathf.Ceil((float)maxIndex / 2f);
+
+        int sum = 0;
+        for (int i = 1; i <= half; i++)
+            sum += i;
+
+        var rate = 1f / sum;
+        var random = Random.Range(0f, 1f);
+
+        var sumRate = rate;
+        int index;
+        for (index = 0; index < half; index++)
+        {
+            if (sumRate >= random)
+                break;
+
+            sumRate += rate * (index + 2);
+        }
+
+        if (Random.Range(0f, 1f) > 0.5f)
+            return maxIndex - index - 1;
+        else
+            return index;
+    }
+
+    private class Stack
+    {
+        private List<IResource> _stack;
+
+        public Stack()
+        {
+            _stack = new List<IResource>();
+        }
+
+        public int Count => _stack.Count;
+
+        public IResource LastResource => _stack.LastOrDefault();
+
+        public void Add(IResource resource)
+        {
+            _stack.Add(resource);
+        }
+
+        public bool Remove(IResource resource)
+        {
+            return _stack.Remove(resource);
+        }
+    }
 }
