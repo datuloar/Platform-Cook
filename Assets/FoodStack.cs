@@ -40,27 +40,27 @@ public class FoodStack : ResourcesStack
 
     protected override Vector3 CalculateAddEndPosition(Transform container, IResource resource)
     {
-        var x = GetRandomIndex(_size.x);
-        var y = GetRandomIndex(_size.y);
+        var x = 0;
+        var y = 0;
+
+        do
+        {
+            x = GetRandomIndex(_size.x);
+            y = GetRandomIndex(_size.y);
+
+        } while (_matrix[x, y].Count >= _height);
+
+        var horizontalOffset = new Vector3(x * _xDistance, 0, y * _yDistance) + new Vector3(Random.Range(0, 0.06f), 0, Random.Range(0, 0.06f));
+        var up = Vector3.up * _matrix[x, y].GetHeight() + horizontalOffset;
 
         _matrix[x, y].Add(resource);
 
-        var count = _matrix[x, y].Count < _height ? _matrix[x, y].Count : _height;
-
-        var horizontalOffset = new Vector3(x * _xDistance, 0, y * _yDistance);
-
-
-        if (_matrix[x, y].LastResource != null)
-        {
-            return  Vector3.up* count * _matrix[x, y].LastResource.Height + horizontalOffset;
-        }
-
-        return Vector3.up + horizontalOffset;
+        return up;
     }
 
     protected override Vector3 CalculateEndRotation(Transform container, IResource resource)
     {
-        return Vector3.up * Random.Range(-10, 10);
+        return Vector3.up * Random.Range(-20, 20);
     }
 
     protected override void OnRemove(IResource resource)
@@ -113,7 +113,17 @@ public class FoodStack : ResourcesStack
 
         public int Count => _stack.Count;
 
-        public IResource LastResource => _stack.LastOrDefault();
+        public float GetHeight()
+        {
+            float height = 0;
+
+            foreach (var stack in _stack)
+            {
+                height += stack.Height;
+            }
+
+            return height;
+        }
 
         public void Add(IResource resource)
         {
