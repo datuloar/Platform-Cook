@@ -1,20 +1,17 @@
 fileFormatVersion: 2
-guid: 0250b03a40678464ba0bf377a58650fb
+guid: ff79bfdd37375a94ca181caffc68c9f5
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 4877158476044601397
-    second: Skelet.c.002|Attack
-  - first:
       74: -5601916230918258366
     second: Skelet.c.002|CharacterEndEating
   - first:
-      74: -4964202437676420530
-    second: Skelet.c.002|enemyRun
-  - first:
       74: -296067474767296659
     second: Skelet.c.002|Fly
+  - first:
+      74: 5971471336640257600
+    second: Skelet.c.002|Idle
   - first:
       74: -633814006170471828
     second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Eating
@@ -50,35 +47,6 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Skelet.c.002|Attack
-      takeName: Skelet.c.002|Attack
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 21
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
       name: Skelet.c.002|CharacterEndEating
       takeName: Skelet.c.002|CharacterEndEating
       internalID: 0
@@ -108,11 +76,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Skelet.c.002|enemyRun
-      takeName: Skelet.c.002|enemyRun
+      name: Skelet.c.002|Fly
+      takeName: Skelet.c.002|Fly
       internalID: 0
       firstFrame: 0
-      lastFrame: 21
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -137,11 +105,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Skelet.c.002|Fly
-      takeName: Skelet.c.002|Fly
+      name: Skelet.c.002|Idle
+      takeName: Skelet.c.002|Idle
       internalID: 0
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 41
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
