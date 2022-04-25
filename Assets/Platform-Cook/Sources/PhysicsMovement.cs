@@ -13,6 +13,8 @@ public class PhysicsMovement : Movement
     {
         if (speed < 0)
             throw new ArgumentException();
+
+        _speed = speed;
     }
 
     public override void Move(Vector3 direction)

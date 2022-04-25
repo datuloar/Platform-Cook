@@ -10,6 +10,6 @@ public interface ITable
     event Action FoodCountChanged;
     event Action FoodEnded;
 
-    void AddFood(IFood food);
+    void AddFood(IFood food, bool animate = true);
     IFood GetFood();
 }

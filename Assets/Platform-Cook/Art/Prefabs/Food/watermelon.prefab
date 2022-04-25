@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 0.05
   _type: 1
-  _weight: 5
+  _weight: 10
   _canTake: 1
 --- !u!65 &2133650632861591723
 BoxCollider:

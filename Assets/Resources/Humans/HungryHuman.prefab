@@ -522,7 +522,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011870596835601382}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -545,7 +545,7 @@ MonoBehaviour:
   _secondsToHide: 2
   _hideDuration: 1
   _showDuration: 0.3
-  _barBackFillDuration: 1
+  _barBackFillDuration: 2
 --- !u!114 &6041346340053200788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15532,7 +15532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08447b4e63a7de41b56f1da38b507cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stoppingDistance: 0.6
+  _stoppingDistance: 0.5
   _physicsMovement: {fileID: 2708476544813240555}
 --- !u!114 &2708476544813240555
 MonoBehaviour:
@@ -15635,7 +15635,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skinnedMeshRenderer: {fileID: 265769489071683161}
-  _growAddition: 15
   _maxBellySize: 100
 --- !u!1 &6376518532787926347
 GameObject:

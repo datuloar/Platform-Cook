@@ -8,7 +8,7 @@ public class HumanAnimation : MonoBehaviour
     private const string Eating = nameof(Eating);
     private const string Fly = nameof(Fly);
     private const string Movement = nameof(Movement);
-    private const string KnifeAttack = nameof(KnifeAttack);
+    private const string Attack = nameof(Attack);
 
     [SerializeField] private Animator _animator;
 
@@ -19,7 +19,7 @@ public class HumanAnimation : MonoBehaviour
 
     public void PlayAttack()
     {
-        _animator.SetTrigger(KnifeAttack);
+        _animator.SetTrigger(Attack);
     }
 
     public void PlayEating(bool isEating)

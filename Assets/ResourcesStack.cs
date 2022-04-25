@@ -19,7 +19,7 @@ public abstract class ResourcesStack : MonoBehaviour
 
     protected abstract void Sort(List<Transform> unsortedTransforms);
 
-    public void Add(IResource resource)
+    public void Add(IResource resource, bool animate = true)
     {
         Vector3 endPosition = CalculateAddEndPosition(_stackContainer, resource);
         Vector3 endRotation = CalculateEndRotation(_stackContainer, resource);
@@ -28,13 +28,21 @@ public abstract class ResourcesStack : MonoBehaviour
         resource.transform.DOComplete(true);
         resource.transform.parent = _stackContainer;
 
-        resource.transform.DOLocalMove(endPosition, _animationDuration);
-        resource.transform.DOLocalRotate(endRotation, _animationDuration);
+        if (animate)
+        {
+            resource.transform.DOLocalMove(endPosition, _animationDuration);
+            resource.transform.DOLocalRotate(endRotation, _animationDuration);
 
-        if (_scalePunch.Enabled)
-            resource.transform.DOPunchScale(defaultScale * _scalePunch.Value, _animationDuration);
-        if (_jumpPower.Enabled)
-            resource.transform.DOLocalJump(endPosition, _jumpPower.Value, 1, _animationDuration);
+            if (_scalePunch.Enabled)
+                resource.transform.DOPunchScale(defaultScale * _scalePunch.Value, _animationDuration);
+            if (_jumpPower.Enabled)
+                resource.transform.DOLocalJump(endPosition, _jumpPower.Value, 1, _animationDuration);
+        }
+        else
+        {
+            resource.transform.localPosition = endPosition;
+            resource.transform.localRotation = Quaternion.Euler(endRotation);
+        }
 
         _transforms.Add(resource.transform);
     }

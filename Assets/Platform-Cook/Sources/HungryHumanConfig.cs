@@ -6,7 +6,6 @@ public class HungryHumanConfig : ScriptableObject
 {
     [SerializeField] private float _speed;
     [SerializeField] private int _healthPoints;
-    [SerializeField] private int _bellySize;
     [SerializeField] private float _delayBetweenMeals;
     [SerializeField] private int _amountFoodEatenPerDelay;
     [SerializeField] private List<Food> _foods;

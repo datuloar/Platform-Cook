@@ -59,7 +59,7 @@ public class BonusGame : MonoBehaviour, IBonusGame
 
     private IEnumerator CookFlying()
     {
-        var targetPosition = new Vector3(_cook.transform.position.x, _cook.transform.position.y + 15, _cook.transform.position.z);
+        var targetPosition = new Vector3(_cook.transform.position.x, _cook.transform.position.y + _cook.Weight / 10, _cook.transform.position.z);
         _cook.Animation.PlayFly(true);
         _cook.StartFarting();
 

@@ -17,8 +17,8 @@ public class Cook : MonoBehaviour, ICook
 
     public event Action Dead;
 
-    public IHumanBelly Belly => _belly;
     public HumanAnimation Animation => _animation;
+    public float Weight => _belly.Weight;
 
     private void OnEnable()
     {

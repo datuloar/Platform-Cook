@@ -6,10 +6,10 @@ public class Food : MonoBehaviour, IFood
 {
     [SerializeField] private float _height = 0.10f;
     [SerializeField] private ResourceType _type;
-    [SerializeField] private float _weight;
+    [SerializeField] private int _weight;
     [SerializeField] private bool _canTake = true;
 
-    public float Weight => _weight;
+    public int Weight => _weight;
     public bool CanTake => _canTake;
     public ResourceType Type => _type;
 

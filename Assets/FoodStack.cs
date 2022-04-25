@@ -50,7 +50,7 @@ public class FoodStack : ResourcesStack
 
         } while (_matrix[x, y].Count >= _height);
 
-        var horizontalOffset = new Vector3(x * _xDistance, 0, y * _yDistance) + new Vector3(Random.Range(0, 0.06f), 0, Random.Range(0, 0.06f));
+        var horizontalOffset = new Vector3(x * _xDistance, 0, y * _yDistance) + new Vector3(Random.Range(0, 0.1f), 0, Random.Range(0, 0.1f));
         var up = Vector3.up * _matrix[x, y].GetHeight() + horizontalOffset;
 
         _matrix[x, y].Add(resource);
