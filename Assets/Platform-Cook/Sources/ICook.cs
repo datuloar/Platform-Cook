@@ -7,5 +7,5 @@
     void FreezeMovement();
     void StartFarting();
     void UnfreezeMovement();
-    void Eat(IFood food);
+    void Eat(Food food);
 }

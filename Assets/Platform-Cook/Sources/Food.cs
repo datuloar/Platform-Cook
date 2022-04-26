@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-public class Food : MonoBehaviour, IFood
+public class Food : MonoBehaviour, IResource
 {
     [SerializeField] private float _height = 0.10f;
     [SerializeField] private ResourceType _type;
@@ -15,7 +15,7 @@ public class Food : MonoBehaviour, IFood
 
     public float Height => _height;
 
-    public event Action<IFood> Taken;
+    public event Action<Food> Taken;
 
     public void Eat()
     {
@@ -28,6 +28,12 @@ public class Food : MonoBehaviour, IFood
         transform.parent = null;
 
         Taken?.Invoke(this);
+    }
+
+    public void Drop()
+    {
+        _canTake = true;
+        transform.parent = null;
     }
 
     public void Hide(bool animate = true)

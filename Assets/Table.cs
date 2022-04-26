@@ -8,7 +8,7 @@ public class Table : MonoBehaviour, ITable
     [SerializeField] private FoodStack _stack;
     [SerializeField] private int _maxCapacity;
 
-    private Stack<IFood> _food = new Stack<IFood>();
+    private Stack<Food> _food = new Stack<Food>();
 
     public bool HasFood
     {
@@ -30,7 +30,7 @@ public class Table : MonoBehaviour, ITable
     public event Action FoodCountChanged;
     public event Action FoodEnded;
 
-    public void AddFood(IFood food, bool animate = true)
+    public void AddFood(Food food, bool animate = true)
     {
         _stack.Add(food, animate);
         _food.Push(food);
@@ -39,7 +39,7 @@ public class Table : MonoBehaviour, ITable
         FoodCountChanged?.Invoke();
     }
 
-    public IFood GetFood()
+    public Food GetFood()
     {
         var food = _food.Pop();
         _stack.Remove(food);

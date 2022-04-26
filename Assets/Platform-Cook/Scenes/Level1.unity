@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 1053789487}
   - component: {fileID: 1053789488}
   m_Layer: 0
-  m_Name: EatProgress
+  m_Name: FoodProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4867,6 +4867,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fill: {fileID: 783265483}
   _table: {fileID: 58517922}
+  _fillDuration: 0.4
 --- !u!1 &1053980298
 GameObject:
   m_ObjectHideFlags: 0
@@ -7980,7 +7981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfdfed13f3ca3d43905ffc8aaa86365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hideDuration: 1
+  _hideDuration: 0.7
   _showDuration: 0.5
 --- !u!1 &1679547823
 GameObject:
@@ -9656,7 +9657,7 @@ MonoBehaviour:
     - {fileID: 1400057504}
     - {fileID: 983199069}
   _hungryHumanConfigs:
-  - {fileID: 11400000, guid: fc4da5ed1e0cd9c44b498b8a357fa2d7, type: 2}
+  - {fileID: 11400000, guid: 7756d45a560489b4f80a97deb67e5f5d, type: 2}
 --- !u!1 &919132149085822262
 GameObject:
   m_ObjectHideFlags: 0
@@ -9959,6 +9960,10 @@ PrefabInstance:
       propertyPath: _waveSettings._delayBetweenSpawn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
+      propertyPath: _hungryHumanConfigs.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2622224253edd43469bb32e5df7db216, type: 2}
     - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
       propertyPath: _hungryHumanConfigs.Array.data[1]
       value: 

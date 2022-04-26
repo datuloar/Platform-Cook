@@ -10,7 +10,9 @@ public class HumanBelly : MonoBehaviour, IHumanBelly
     [SerializeField] private int _maxBellySize = 100;
 
     private int _currentWeight;
-    private List<IFood> _food = new List<IFood>();
+    private Stack<Food> _food = new Stack<Food>();
+
+    public int FoodCount => _food.Count;
 
     public int Weight
     {
@@ -25,10 +27,10 @@ public class HumanBelly : MonoBehaviour, IHumanBelly
         }
     }
 
-    public void AddFood(IFood food)
+    public void AddFood(Food food)
     {
         food.Hide();
-        _food.Add(food);
+        _food.Push(food);
         Grow(food.Weight);
     }
 
@@ -39,8 +41,24 @@ public class HumanBelly : MonoBehaviour, IHumanBelly
 
         if (_currentWeight <= _maxBellySize)
         {
-            var blendShapeIndex = _skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(GrowKey);
-            _skinnedMeshRenderer.SetBlendShapeWeight(blendShapeIndex, _currentWeight);
+            ChangeBellySize(_currentWeight);
         }
+    }
+
+    public Food RemoveFood()
+    {
+        var food = _food.Pop();
+        food.Show();
+        food.transform.parent = null;
+        _currentWeight -= food.Weight;
+        ChangeBellySize(_currentWeight);
+
+        return food;
+    }
+
+    private void ChangeBellySize(int size)
+    {
+        var blendShapeIndex = _skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(GrowKey);
+        _skinnedMeshRenderer.SetBlendShapeWeight(blendShapeIndex, size);
     }
 }

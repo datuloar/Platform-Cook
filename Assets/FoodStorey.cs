@@ -9,7 +9,7 @@ public class FoodStorey : Storey
     [SerializeField] private Coundown _countdown;
     [SerializeField] private int _secondsToCollectFood;
 
-    private List<IFood> _food = new List<IFood>();
+    private List<Food> _food = new List<Food>();
 
     public override event Action Completed;
 
@@ -64,7 +64,7 @@ public class FoodStorey : Storey
         _food.Add(food);
     }
 
-    private void OnFoodTaken(IFood food)
+    private void OnFoodTaken(Food food)
     {
         _food.Remove(food);
     }

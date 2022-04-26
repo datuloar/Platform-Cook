@@ -36,17 +36,16 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
         _health.Init(config.HealthPoints, config.HealthPoints);
 
         foreach (var food in config.Foods)
-            _belly.AddFood(food);
+        {
+            var spawnedFood = Instantiate(food, transform);
+            _belly.AddFood(spawnedFood);
+        }
 
         _amountFoodEatenPerDelay = config.AmountFoodEatenPerDelay;
         _delayBetweenMeals = config.DelayBetweenMeals;
         _movement.ChangeSpeed(config.Speed);
-    }
 
-    public void Appearance()
-    {
         _skin.Appearance();
-
         MoveToPlatform();
     }
 
@@ -91,7 +90,7 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
         {
             for (int i = 0; i < _amountFoodEatenPerDelay; i++)
             {
-                IFood food = _platform.Table.GetFood();
+                Food food = _platform.Table.GetFood();
                 _belly.AddFood(food);
             }
 
@@ -102,6 +101,17 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
     private void Die()
     {
         Dead?.Invoke();
+
+        float foodHeight = 0;
+
+        while (_belly.FoodCount > 0)
+        {
+            Food food = _belly.RemoveFood();
+            food.Drop();
+            food.transform.position = transform.position + new Vector3(0, foodHeight, 0);
+            foodHeight += food.Height;
+        }
+
         Destroy(gameObject);
         _skin.Destroy();
     }

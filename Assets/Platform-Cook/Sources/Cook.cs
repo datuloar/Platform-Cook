@@ -75,14 +75,14 @@ public class Cook : MonoBehaviour, ICook
 
     public void UnfreezeMovement() => _movement.Unfreeze();
 
-    public void Eat(IFood food)
+    public void Eat(Food food)
     {
         _belly.AddFood(food);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out IFood food))
+        if (other.TryGetComponent(out Food food))
         {
             if (food.CanTake)
             {

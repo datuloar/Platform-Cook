@@ -78,11 +78,11 @@ public class BonusGame : MonoBehaviour, IBonusGame
 
     private IEnumerator CookEatingFood()
     {
-        float eatingDelay = 0.3f;
+        float eatingDelay = 0.25f;
 
         while (_platform.Table.HasFood)
         {
-            eatingDelay -= 0.02f;
+            eatingDelay -= 0.01f;
             _cook.Animation.PlayEating(true);
             _cook.Eat(_platform.Table.GetFood());
 

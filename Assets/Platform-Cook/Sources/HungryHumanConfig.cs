@@ -14,5 +14,5 @@ public class HungryHumanConfig : ScriptableObject
     public int HealthPoints => _healthPoints;
     public float DelayBetweenMeals => _delayBetweenMeals;
     public int AmountFoodEatenPerDelay => _amountFoodEatenPerDelay;
-    public IReadOnlyList<IFood> Foods => _foods;
+    public IReadOnlyList<Food> Foods => _foods;
 }
