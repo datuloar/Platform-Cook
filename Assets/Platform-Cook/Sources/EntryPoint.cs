@@ -32,4 +32,9 @@ public class EntryPoint : MonoBehaviour
     {
         _game.Tick(Time.deltaTime);
     }
+
+    private void FixedUpdate()
+    {
+        _game.FixedTick(Time.deltaTime);
+    }
 }

@@ -52,8 +52,15 @@ public class Game : IGame
     {
         if (_isPlaying)
         {
-            _player.Tick(time);
             _house.Tick(time);
+        }
+    }
+
+    public void FixedTick(float time)
+    {
+        if (_isPlaying)
+        {
+            _player.Tick(time);
         }
     }
 
@@ -137,4 +144,5 @@ public class Game : IGame
 
         _viewport.GetVictoryWindow().Open();
     }
+
 }

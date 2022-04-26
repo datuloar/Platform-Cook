@@ -35,7 +35,7 @@ public class Food : MonoBehaviour, IFood
         if (animate)
         {
             transform.localScale = Vector3.one;
-            transform.DOScale(Vector3.zero, 0.4f).SetEase(Ease.OutBack)
+            transform.DOScale(Vector3.zero, 0.4f)
             .OnComplete(() => gameObject.SetActive(false));
         }
         else

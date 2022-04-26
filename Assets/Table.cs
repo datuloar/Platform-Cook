@@ -10,7 +10,20 @@ public class Table : MonoBehaviour, ITable
 
     private Stack<IFood> _food = new Stack<IFood>();
 
-    public bool HasFood => _food.Count > 0;
+    public bool HasFood
+    {
+        get
+        {
+            if (_food.Count > 0)
+            {
+                return true;
+            }
+
+            FoodEnded?.Invoke();
+            return false;
+        }
+    }
+
     public int FoodCount => _food.Count;
     public int MaxCapacity => _maxCapacity;
 
@@ -21,6 +34,7 @@ public class Table : MonoBehaviour, ITable
     {
         _stack.Add(food, animate);
         _food.Push(food);
+        _maxCapacity++;
 
         FoodCountChanged?.Invoke();
     }

@@ -35,8 +35,8 @@ public class BonusGame : MonoBehaviour, IBonusGame
 
     public void StartGame()
     {
-        _cook.transform.position = _platform.transform.position;
-        _cook.transform.rotation = Quaternion.Euler(new Vector3(0, 180));
+        _cook.transform.position = _platform.transform.position + new Vector3(0, 0, -0.6f);
+        _cook.transform.rotation = Quaternion.Euler(new Vector3(0, 0));
         _cook.FreezeMovement();
 
         _camera.ZoomToTarget(OnCookZoomed);
@@ -59,7 +59,9 @@ public class BonusGame : MonoBehaviour, IBonusGame
 
     private IEnumerator CookFlying()
     {
-        var targetPosition = new Vector3(_cook.transform.position.x, _cook.transform.position.y + _cook.Weight / 10, _cook.transform.position.z);
+        var bonusHeight = Mathf.Clamp(_cook.Weight / 10, 2, 25);
+
+        var targetPosition = new Vector3(_cook.transform.position.x, _cook.transform.position.y + bonusHeight, _cook.transform.position.z);
         _cook.Animation.PlayFly(true);
         _cook.StartFarting();
 
@@ -76,15 +78,19 @@ public class BonusGame : MonoBehaviour, IBonusGame
 
     private IEnumerator CookEatingFood()
     {
+        float eatingDelay = 0.3f;
+
         while (_platform.Table.HasFood)
         {
+            eatingDelay -= 0.02f;
             _cook.Animation.PlayEating(true);
             _cook.Eat(_platform.Table.GetFood());
 
-            yield return Yielder.WaitForSeconds(0.3f);
+            yield return Yielder.WaitForSeconds(eatingDelay);
         }
 
         _cook.Animation.PlayEating(false);
+        _cook.Animation.PlayMovement(true);
         _camera.MoveToStartPoint(OnCameraMovedToStartPoint);
     }
 }

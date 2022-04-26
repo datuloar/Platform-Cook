@@ -18,7 +18,7 @@ public class ArrowPointer : MonoBehaviour
         if (animate)
         {
             transform.localScale = Vector3.one;
-            transform.DOScale(Vector3.zero, _hideDuration).SetEase(Ease.OutBack)
+            transform.DOScale(Vector3.zero, _hideDuration)
             .OnComplete(() => gameObject.SetActive(false));
         }
         else

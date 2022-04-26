@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ede35c007aab84a85fe79c5b1bd649, type: 3}
   m_Name: HungryHuman2Level
   m_EditorClassIdentifier: 
-  _speed: 0.6
+  _speed: 0.8
   _healthPoints: 30
   _delayBetweenMeals: 2
   _amountFoodEatenPerDelay: 1
   _foods:
-  - {fileID: 580559035221827633, guid: 3b59d64f488964349b89591372a549bf, type: 3}
-  - {fileID: 1693367253122972789, guid: 705cf5a47cf8c6048934dca0bce96e3f, type: 3}
+  - {fileID: 4532143716661947662, guid: 911148ca168f5d549ac5e758d3268b1d, type: 3}
+  - {fileID: 3528762625988234474, guid: bb5aaa3cf69353b46b3de994d051ebc0, type: 3}

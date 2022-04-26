@@ -1,4 +1,4 @@
-﻿public interface IGame : IUpdateLoop
+﻿public interface IGame : IUpdateLoop, IFixedUpdateLoop
 {
     void Start();
 }

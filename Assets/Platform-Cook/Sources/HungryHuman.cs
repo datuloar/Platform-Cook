@@ -43,15 +43,11 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
         _movement.ChangeSpeed(config.Speed);
     }
 
-    public void StartMove()
+    public void Appearance()
     {
         _skin.Appearance();
 
-        if (_eating != null)
-            StopCoroutine(_eating);
-
-        _movement.Move(_platform.transform.position);
-        _animation.PlayMovement(true);
+        MoveToPlatform();
     }
 
     public void Damage(float value)
@@ -62,13 +58,29 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
     private void StartEating()
     {
         if (_eating != null)
+        {
             StopCoroutine(_eating);
+            _eating = null;
+        }
 
         _eating = StartCoroutine(Eating());
 
         _movement.Stop();
         _animation.PlayMovement(false);
         _animation.PlayEating(true);       
+    }
+
+    private void MoveToPlatform()
+    {
+        if (_eating != null)
+        {
+            StopCoroutine(_eating);
+            _eating = null;
+        }
+
+        _movement.Move(_platform.transform.position);
+        _animation.PlayEating(false);
+        _animation.PlayMovement(true);
     }
 
     private IEnumerator Eating()
@@ -111,7 +123,7 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
     {
         if (other.TryGetComponent(out PlatformZoneTrigger platformZoneTrigger))
         {
-            StartMove();
+            MoveToPlatform();
         }
     }
 }

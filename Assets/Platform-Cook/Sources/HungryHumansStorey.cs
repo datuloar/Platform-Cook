@@ -71,7 +71,7 @@ public class HungryHumansStorey : Storey
             _waveSettings.HumansPositions[randomIndexPosition].rotation.eulerAngles);
 
         human.Init(_platform, config);
-        human.StartMove();
+        human.Appearance();
 
         return human;
     }
