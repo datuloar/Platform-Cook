@@ -71,10 +71,6 @@ public class Cook : MonoBehaviour, ICook
         _fartTrailVfx.Play();
     }
 
-    public void FreezeMovement() => _movement.Freeze();
-
-    public void UnfreezeMovement() => _movement.Unfreeze();
-
     public void Eat(Food food)
     {
         _belly.AddFood(food);
@@ -88,6 +84,7 @@ public class Cook : MonoBehaviour, ICook
             {
                 food.Take();
                 _table.AddFood(food);
+                Taptic.Selection();
             }
         }
     }

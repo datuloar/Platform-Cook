@@ -187,6 +187,7 @@ MonoBehaviour:
   _type: 0
   _weight: 20
   _canTake: 1
+  _trailRenderer: {fileID: 3875626020745408271}
 --- !u!65 &5443608503293885674
 BoxCollider:
   m_ObjectHideFlags: 0

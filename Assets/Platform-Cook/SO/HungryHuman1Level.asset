@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1
   _healthPoints: 15
-  _delayBetweenMeals: 2
+  _delayBetweenMeals: 0.5
   _amountFoodEatenPerDelay: 1
   _foods: []

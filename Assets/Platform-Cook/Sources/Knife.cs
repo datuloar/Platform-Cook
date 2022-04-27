@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class Knife : Weapon
 {
     [SerializeField] private float _damageValue;
     [SerializeField] private Collider _collider;
+
+    public override event Action Hit;
 
     public override void Disable()
     {
@@ -22,6 +25,7 @@ public class Knife : Weapon
         if (other.TryGetComponent(out IHungryHuman human))
         {
             human.Damage(_damageValue);
+            Hit?.Invoke();
         }
     }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 0.8
   _healthPoints: 30
-  _delayBetweenMeals: 2
-  _amountFoodEatenPerDelay: 1
+  _delayBetweenMeals: 1
+  _amountFoodEatenPerDelay: 2
   _foods:
   - {fileID: 4532143716661947662, guid: 911148ca168f5d549ac5e758d3268b1d, type: 3}
   - {fileID: 3528762625988234474, guid: bb5aaa3cf69353b46b3de994d051ebc0, type: 3}

@@ -6,6 +6,7 @@ public class DefeatWindow : MonoBehaviour, IDefeatWindow
 {
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Button _restartButton;
+    [SerializeField] private UIContent _content;
 
     public event Action RestartButtonClicked;
 
@@ -27,6 +28,7 @@ public class DefeatWindow : MonoBehaviour, IDefeatWindow
     public void Open()
     {
         _canvasGroup.Open();
+        _content.Show();
     }
 
     private void OnRestartButtonClicked()

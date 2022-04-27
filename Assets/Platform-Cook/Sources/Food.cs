@@ -8,6 +8,7 @@ public class Food : MonoBehaviour, IResource
     [SerializeField] private ResourceType _type;
     [SerializeField] private int _weight;
     [SerializeField] private bool _canTake = true;
+    [SerializeField] private TrailRenderer _trailRenderer;
 
     public int Weight => _weight;
     public bool CanTake => _canTake;
@@ -38,6 +39,8 @@ public class Food : MonoBehaviour, IResource
 
     public void Hide(bool animate = true)
     {
+        _trailRenderer.enabled = false;
+
         if (animate)
         {
             transform.localScale = Vector3.one;
@@ -52,6 +55,7 @@ public class Food : MonoBehaviour, IResource
 
     public void Show(bool animate = true)
     {
+        _trailRenderer.enabled = true;
         gameObject.SetActive(true);
 
         if (animate)

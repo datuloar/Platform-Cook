@@ -37,7 +37,6 @@ public class BonusGame : MonoBehaviour, IBonusGame
     {
         _cook.transform.position = _platform.transform.position + new Vector3(0, 0, -0.6f);
         _cook.transform.rotation = Quaternion.Euler(new Vector3(0, 0));
-        _cook.FreezeMovement();
 
         _camera.ZoomToTarget(OnCookZoomed);
     }

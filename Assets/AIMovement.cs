@@ -28,6 +28,8 @@ public class AIMovement : Movement
     {
         if (_moveToPosition != null)
             StopCoroutine(_moveToPosition);
+
+        IsMoving = false;
     }
 
     private IEnumerator MoveToPosition(Vector3 position)
@@ -37,6 +39,7 @@ public class AIMovement : Movement
             Vector3 directionToPosition = (position - transform.position).normalized;
 
             _physicsMovement.Move(directionToPosition);
+            IsMoving = true;
 
             yield return Yielder.FixedUpdate;
         }

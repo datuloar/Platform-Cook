@@ -60,7 +60,7 @@ public class FoodStack : ResourcesStack
 
     protected override Vector3 CalculateEndRotation(Transform container, IResource resource)
     {
-        return Vector3.up * Random.Range(-20, 20);
+        return Vector3.up * Random.Range(-30, 30);
     }
 
     protected override void OnRemove(IResource resource)

@@ -43,6 +43,7 @@ public class Game : IGame
 
         InitializationComponents();
 
+        _viewport.GetStartWindow().Open();
         _gameEngine.GetInputDevice().Disable();
 
         _house.GetPlatform().Table.FoodEnded += OnPlatformFoodEnded;

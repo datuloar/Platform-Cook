@@ -36,6 +36,7 @@ public class ScoreBlock : MonoBehaviour
             rigidbody.isKinematic = false;
 
         Destroyed?.Invoke();
+        Taptic.Medium();
     }
 
     private void OnTriggerEnter(Collider other)

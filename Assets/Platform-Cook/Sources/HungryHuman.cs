@@ -102,18 +102,18 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
     {
         Dead?.Invoke();
 
-        float foodHeight = 0;
-
         while (_belly.FoodCount > 0)
         {
             Food food = _belly.RemoveFood();
             food.Drop();
-            food.transform.position = transform.position + new Vector3(0, foodHeight, 0);
-            foodHeight += food.Height;
+            food.transform.position = transform.position;
+
+            food.Take();
+            _platform.Table.AddFood(food);
         }
 
-        Destroy(gameObject);
         _skin.Destroy();
+        Destroy(gameObject);
     }
 
     private void OnHealthPointsEnded()
