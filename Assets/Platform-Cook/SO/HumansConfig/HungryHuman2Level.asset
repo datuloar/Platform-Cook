@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ede35c007aab84a85fe79c5b1bd649, type: 3}
+  m_Name: HungryHuman2Level
+  m_EditorClassIdentifier: 
+  _speed: 0.6
+  _healthPoints: 30
+  _delayBetweenMeals: 1.2
+  _amountFoodEatenPerDelay: 2
+  _foodDropCount: 2
+  _foods:
+  - {fileID: 4532143716661947662, guid: 911148ca168f5d549ac5e758d3268b1d, type: 3}
+  - {fileID: 3528762625988234474, guid: bb5aaa3cf69353b46b3de994d051ebc0, type: 3}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,9 @@ public class VictoryWindow : MonoBehaviour, IVictoryWindow
 {
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Button _nextButton;
+    [SerializeField] private CurrencyAnimation _currencyAnimation;
+    [SerializeField] private UIContent _content;
+    [SerializeField] private ProgressNewSkin _progressNewSkin;
 
     public event Action NextButtonClicked;
 
@@ -19,14 +23,15 @@ public class VictoryWindow : MonoBehaviour, IVictoryWindow
         _nextButton.onClick.RemoveListener(OnNextButtonClicked);
     }
 
-    public void Close()
-    {
-        _canvasGroup.Close();
-    }
-
-    public void Open()
+    public void Open(GameResult gameResult)
     {
         _canvasGroup.Open();
+        _content.Show(
+            () => 
+            { 
+                _currencyAnimation.AddToWallet(gameResult.Currency, 
+                    () => _progressNewSkin.Show());
+            });
     }
 
     private void OnNextButtonClicked()

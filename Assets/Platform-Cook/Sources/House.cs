@@ -6,19 +6,16 @@ public class House : MonoBehaviour, IHouse
 {
     [SerializeField] private List<Storey> _storeys;
     [SerializeField] private Platform _platform;
-
-    private IHumansFactory _humansFactory;
+    [SerializeField] private Cook _cookTemplate;
 
     private int _currentStoreyIndex;
 
     public bool HasNextStorey => _currentStoreyIndex + 1 < _storeys.Count;
 
-    public void Init(IHumansFactory humansFactory)
+    private void Awake()
     {
-        _humansFactory = humansFactory;
-
         foreach (var storey in _storeys)
-            storey.Init(_platform, humansFactory);
+            storey.Init(_platform);
     }
 
     public void Tick(float time)
@@ -43,7 +40,8 @@ public class House : MonoBehaviour, IHouse
         _storeys[_currentStoreyIndex].Completed += (() => ended?.Invoke());
     }
 
-    public ICook CreateCook() => _humansFactory.CreateCook(Vector3.zero, new Vector3(0, 180));
+    public ICook CreateCook() =>
+        Instantiate(_cookTemplate, _platform.transform.position, Quaternion.Euler(0, -180,0));
 
     public IPlatform GetPlatform() => _platform;
 }

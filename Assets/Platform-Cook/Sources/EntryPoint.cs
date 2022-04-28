@@ -9,16 +9,18 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private MainCamera _camera;
     [SerializeField] private BonusGame _bonusGame;
     [SerializeField] private string _nextLevelName;
+    [SerializeField] private LevelLoader _levelLoaderTemplate;
 
     private IGame _game;
 
     private void Awake()
     {
-        var level = new Level(_nextLevelName);
-        var assetsProvider = new AssetsProvider();
-        var humansFactory = new HumansFactory(assetsProvider);
+        var levelLoader = FindObjectOfType<LevelLoader>();
+        
+        if (levelLoader == null)
+            levelLoader = Instantiate(_levelLoaderTemplate, transform.position, Quaternion.identity);
 
-        _house.Init(humansFactory);
+        var level = new Level(_nextLevelName, levelLoader);
 
         _game = new Game(_viewport, _house, _camera, level, _bonusGame, _gameEngine);
     }

@@ -4,8 +4,20 @@ using UnityEngine;
 public class HumanSkin : MonoBehaviour
 {
     [SerializeField] private HumanDestroyEffect _destroyEffect;
-    [SerializeField] private SkinnedMeshRenderer _meshRenderer;
     [SerializeField] private ParticleSystem _appearanceVfx;
+    [SerializeField] private GameObject _currentSkin;
+    [SerializeField] private SkinnedMeshRenderer _meshRenderer;
+
+    public SkinnedMeshRenderer MeshRenderer => _meshRenderer;
+
+    public GameObject ChangeSuit(Suit suit)
+    {
+        Destroy(_currentSkin.gameObject);
+        _currentSkin = Instantiate(suit.Skin, transform);
+        _meshRenderer = _currentSkin.GetComponentInChildren<SkinnedMeshRenderer>();
+
+        return _currentSkin;
+    }
 
     public void Appearance()
     {

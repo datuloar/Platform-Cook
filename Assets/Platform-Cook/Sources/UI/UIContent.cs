@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class UIContent : MonoBehaviour
@@ -8,10 +9,11 @@ public class UIContent : MonoBehaviour
     [SerializeField] private Ease _showEase = Ease.OutBack;
     [SerializeField] private Ease _hideEase;
 
-    public void Show()
+    public void Show(Action completed = null)
     {
         transform.localScale = Vector3.zero;
-        transform.DOScale(1, _showDuration).SetEase(_showEase);
+        transform.DOScale(1, _showDuration).SetEase(_showEase)
+            .OnComplete(() => completed?.Invoke());
     }
 
     public void Hide()

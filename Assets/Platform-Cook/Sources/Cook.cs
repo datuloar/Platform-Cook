@@ -6,6 +6,7 @@ using UnityEngine;
 public class Cook : MonoBehaviour, ICook
 {
     [SerializeField] private Attack _attack;
+    [SerializeField] private HumanSkin _skin;
     [SerializeField] private AttackZoneTrigger _attackZoneTrigger;
     [SerializeField] private Movement _movement;
     [SerializeField] private HumanAnimation _animation;
@@ -57,13 +58,9 @@ public class Cook : MonoBehaviour, ICook
         _animation.PlayMovement(false);
     }
 
-    private void OnAttackZoneStay(IHuman human)
+    public void ChangeSuit(Suit suit)
     {
-        if (_attack.CanAttack)
-        {
-            _attack.StartAttack();
-            _animation.PlayAttack();
-        }
+        _skin.ChangeSuit(suit);
     }
 
     public void StartFarting()
@@ -74,6 +71,15 @@ public class Cook : MonoBehaviour, ICook
     public void Eat(Food food)
     {
         _belly.AddFood(food);
+    }
+
+    private void OnAttackZoneStay(IHuman human)
+    {
+        if (_attack.CanAttack)
+        {
+            _attack.StartAttack();
+            _animation.PlayAttack();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

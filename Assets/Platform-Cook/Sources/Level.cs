@@ -3,15 +3,17 @@
 public class Level : ILevel
 {
     private readonly string _nextLevelName;
+    private readonly LevelLoader _loader;
 
-    public Level(string nextLevelName)
+    public Level(string nextLevelName, LevelLoader loader)
     {
         _nextLevelName = nextLevelName;
+        _loader = loader;
     }
 
     public void GoNextLevel()
     {
-        SceneManager.LoadScene(_nextLevelName);
+        _loader.LoadSceneCorutine(_nextLevelName);
     }
 
     public void Restart()

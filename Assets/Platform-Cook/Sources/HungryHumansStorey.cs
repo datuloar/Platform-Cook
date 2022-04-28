@@ -7,9 +7,9 @@ public class HungryHumansStorey : Storey
 {
     [SerializeField] private StoreyWaveSettings _waveSettings;
     [SerializeField] private HungryHumanConfig[] _hungryHumanConfigs;
+    [SerializeField] private HungryHuman _hungryHumanTemplate;
 
     private IPlatform _platform;
-    private IHumansFactory _humansFactory;
     private Coroutine _spawningHungryHumans;
     private Timer _timer = new Timer();
     private bool _isWavesEnded;
@@ -27,10 +27,9 @@ public class HungryHumansStorey : Storey
         _timer.Completed -= OnWavesEnded;
     }
 
-    public override void Init(IPlatform platform, IHumansFactory humansFactory)
+    public override void Init(IPlatform platform)
     {
         _platform = platform;
-        _humansFactory = humansFactory;
     }
 
     public override void Tick(float time)
@@ -67,8 +66,8 @@ public class HungryHumansStorey : Storey
     {
         var randomIndexPosition = UnityEngine.Random.Range(0, _waveSettings.HumansPositions.Count);
 
-        var human = _humansFactory.CreateHungryHuman(_waveSettings.HumansPositions[randomIndexPosition].position,
-            _waveSettings.HumansPositions[randomIndexPosition].rotation.eulerAngles);
+        IHungryHuman human =  Instantiate(_hungryHumanTemplate, _waveSettings.HumansPositions[randomIndexPosition].position,
+            Quaternion.Euler(_waveSettings.HumansPositions[randomIndexPosition].rotation.eulerAngles));
 
         human.Init(_platform, config);
 

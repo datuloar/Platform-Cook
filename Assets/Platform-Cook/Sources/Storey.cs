@@ -9,7 +9,7 @@ public abstract class Storey : MonoBehaviour, IStorey, IUpdateLoop
 
     public abstract event Action Completed;
 
-    public abstract void Init(IPlatform platform, IHumansFactory humansFactory);
+    public abstract void Init(IPlatform platform);
     public abstract void StartEvent();
     public abstract void Tick(float time);
 }

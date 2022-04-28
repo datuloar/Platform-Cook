@@ -24,15 +24,16 @@ public class Game : IGame
         _bonusGame = bonusGame;
 
         _viewport.GetStartWindow().StartGameButtonClicked += OnStartGameButtonClicked;
-        _viewport.GetVictoryWindow().NextButtonClicked += Restart;
+        _viewport.GetVictoryWindow().NextButtonClicked += OnNextLevelButtonClicked;
         _viewport.GetDefeatWindow().RestartButtonClicked += Restart;
         _viewport.GetPlayWindow().RestartGameButtonClicked += Restart;
     }
 
+
     ~Game()
     {
         _viewport.GetStartWindow().StartGameButtonClicked -= OnStartGameButtonClicked;
-        _viewport.GetVictoryWindow().NextButtonClicked -= Restart;
+        _viewport.GetVictoryWindow().NextButtonClicked -= OnNextLevelButtonClicked;
         _viewport.GetDefeatWindow().RestartButtonClicked -= Restart;
         _viewport.GetPlayWindow().RestartGameButtonClicked -= Restart;
     }
@@ -139,11 +140,19 @@ public class Game : IGame
         _house.GetPlatform().Table.FoodEnded -= OnPlatformFoodEnded;
     }
 
-    private void OnGameOver()
+    private void OnGameOver(GameResult gameResult)
     {
         _isPlaying = false;
 
-        _viewport.GetVictoryWindow().Open();
+        var currency = PlayerPrefs.GetInt(SaveKey.Currency.ToString()) + gameResult.Currency;
+
+        Persistence.Save(SaveKey.Currency, currency);
+
+        _viewport.GetVictoryWindow().Open(gameResult);
     }
 
+    private void OnNextLevelButtonClicked()
+    {
+        _level.GoNextLevel();
+    }
 }

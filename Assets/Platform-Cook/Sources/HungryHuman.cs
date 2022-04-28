@@ -13,6 +13,7 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
     [SerializeField] private HumanSkin _skin;
     [SerializeField] private HumanBelly _belly;
 
+    private float _foodDropCount;
     private float _delayBetweenMeals;
     private int _amountFoodEatenPerDelay;
     private IPlatform _platform;
@@ -41,6 +42,7 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
             _belly.AddFood(spawnedFood);
         }
 
+        _foodDropCount = config.FoodDropCount;
         _amountFoodEatenPerDelay = config.AmountFoodEatenPerDelay;
         _delayBetweenMeals = config.DelayBetweenMeals;
         _movement.ChangeSpeed(config.Speed);
@@ -102,14 +104,17 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
     {
         Dead?.Invoke();
 
-        while (_belly.FoodCount > 0)
+        if (_belly.FoodCount > _foodDropCount)
         {
-            Food food = _belly.RemoveFood();
-            food.Drop();
-            food.transform.position = transform.position;
+            for (int i = 0; i < _foodDropCount; i++)
+            {
+                Food food = _belly.RemoveFood();
+                food.Drop();
+                food.transform.position = transform.position;
 
-            food.Take();
-            _platform.Table.AddFood(food);
+                food.Take();
+                _platform.Table.AddFood(food);
+            }
         }
 
         _skin.Destroy();

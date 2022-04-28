@@ -12,6 +12,11 @@ public class HumanAnimation : MonoBehaviour
 
     [SerializeField] private Animator _animator;
 
+    public void ChangeAnimator(GameObject skin)
+    {
+       _animator = skin.GetComponent<Animator>();
+    }
+
     public void PlayMovement(bool isMove)
     {
         _animator.SetBool(Movement, isMove);
