@@ -104,7 +104,7 @@ public class HungryHuman : MonoBehaviour, IHungryHuman
     {
         Dead?.Invoke();
 
-        if (_belly.FoodCount > _foodDropCount)
+        if (_belly.FoodCount >= _foodDropCount)
         {
             for (int i = 0; i < _foodDropCount; i++)
             {

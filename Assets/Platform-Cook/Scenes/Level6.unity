@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
       propertyPath: _waveSettings._durationSpawn
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
       propertyPath: _hungryHumanConfigs.Array.size
@@ -788,7 +788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
       propertyPath: _waveSettings._durationSpawn
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
       propertyPath: _hungryHumanConfigs.Array.size
@@ -1719,7 +1719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
       propertyPath: _waveSettings._durationSpawn
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
       propertyPath: _hungryHumanConfigs.Array.size
@@ -2453,7 +2453,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
       propertyPath: _waveSettings._durationSpawn
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4475357051351957230, guid: 357f6e27a98a7794e9815b9981b882b9, type: 3}
       propertyPath: _hungryHumanConfigs.Array.size
