@@ -254,7 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cooldown: 0.5
-  _weapon: {fileID: 1050665548417804248}
+  _weapons:
+  - {fileID: 1050665548417804248}
 --- !u!114 &1163171687084289663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1831,6 +1832,18 @@ PrefabInstance:
     - target: {fileID: 19852826, guid: 552b7b5872bf41745810a0b7bdabf440, type: 3}
       propertyPath: InitialModule.startColor.minColor.a
       value: 0.5529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 19852826, guid: 552b7b5872bf41745810a0b7bdabf440, type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19852826, guid: 552b7b5872bf41745810a0b7bdabf440, type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.4339623
+      objectReference: {fileID: 0}
+    - target: {fileID: 19852826, guid: 552b7b5872bf41745810a0b7bdabf440, type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 0.12890767
       objectReference: {fileID: 0}
     - target: {fileID: 19852826, guid: 552b7b5872bf41745810a0b7bdabf440, type: 3}
       propertyPath: InitialModule.startLifetime.minScalar

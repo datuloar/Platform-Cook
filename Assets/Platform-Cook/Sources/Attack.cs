@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Attack : MonoBehaviour, IUpdateLoop
 {
     [SerializeField] private float _cooldown = 1f;
-    [SerializeField] private Weapon _weapon;
+    [SerializeField] private List<Weapon> _weapons;
 
     private Timer _timer = new Timer();
 
@@ -28,13 +29,18 @@ public class Attack : MonoBehaviour, IUpdateLoop
     public void StartAttack()
     {
         CanAttack = false;
-        _weapon.Enable();
+
+        foreach (var weapon in _weapons)
+            weapon.Enable();
+
         _timer.Start(_cooldown);
     }
 
     private void OnCooldownEnded()
     {
         CanAttack = true;
-        _weapon.Disable();
+
+        foreach (var weapon in _weapons)
+            weapon.Disable();
     }
 }

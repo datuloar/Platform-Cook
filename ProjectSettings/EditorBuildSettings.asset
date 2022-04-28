@@ -35,4 +35,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Platform-Cook/Scenes/Level9.unity
     guid: ef637706138fe1f4cb4e8a1715eddeaf
+  - enabled: 1
+    path: Assets/Platform-Cook/Scenes/Level10.unity
+    guid: 227ccb6221d81b342b1a7f3007639e9d
+  - enabled: 1
+    path: Assets/Platform-Cook/Scenes/Level11.unity
+    guid: 446b0d8b6cf754145a99d7dec53bf291
+  - enabled: 1
+    path: Assets/Platform-Cook/Scenes/Level12.unity
+    guid: 743a644a291c1d4409a28d4e7c8a3b1a
+  - enabled: 1
+    path: Assets/Platform-Cook/Scenes/Level13.unity
+    guid: 759f1cae394ce1a4fa22808d912eecff
+  - enabled: 1
+    path: Assets/Platform-Cook/Scenes/Level14.unity
+    guid: 269ed45e60af6a147b1b9487eba3c9e1
+  - enabled: 1
+    path: Assets/Platform-Cook/Scenes/Level15.unity
+    guid: e101f3fb4c6a3c44ca207f29872060e5
   m_configObjects: {}

@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _height: 0.28
   _type: 0
-  _weight: 10
+  _weight: 15
   _canTake: 1
   _trailRenderer: {fileID: 1816614398546558130}
 --- !u!65 &7350567729704519165
