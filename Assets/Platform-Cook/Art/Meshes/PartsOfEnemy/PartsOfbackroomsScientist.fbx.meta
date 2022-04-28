@@ -1,26 +1,8 @@
 fileFormatVersion: 2
-guid: 5378ab326fa01d54e9078d379a0e90ed
+guid: 0731c9d38d09ce6498413e3be72ad0ad
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable:
-  - first:
-      74: -1042549247526800802
-    second: Skelet.c.001|backroomAttack
-  - first:
-      74: -4793401634657086159
-    second: Skelet.c.001|backroomIdle
-  - first:
-      74: 7487877255968193457
-    second: Skelet.c.001|backroomRun
-  - first:
-      74: -5129402378839860305
-    second: Skelet.c.001|backRoomsEndEating
-  - first:
-      74: -4572549976004244999
-    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|characterEating
-  - first:
-      74: 1685256198980213713
-    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|startIdle
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -52,7 +34,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.5
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -103,8 +85,8 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.5
-    rootMotionBoneName: Cube.002
+    globalScale: 1
+    rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
@@ -112,7 +94,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   additionalBone: 0
   userData: 

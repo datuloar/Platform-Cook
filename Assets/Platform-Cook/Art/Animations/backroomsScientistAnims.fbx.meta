@@ -1,26 +1,20 @@
 fileFormatVersion: 2
-guid: 0250b03a40678464ba0bf377a58650fb
+guid: 8c0d29b96cdebdc4da7ff06c2d878929
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 4877158476044601397
-    second: Skelet.c.002|Attack
+      74: -3878575021219386753
+    second: Skelet.c.002|Skelet.c.001|Skelet.c.001|characterEating
   - first:
-      74: -5601916230918258366
-    second: Skelet.c.002|CharacterEndEating
+      74: -3140531713262132070
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Attack
   - first:
-      74: -4964202437676420530
-    second: Skelet.c.002|enemyRun
+      74: -1964098605881642833
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Eating
   - first:
-      74: -296067474767296659
-    second: Skelet.c.002|Fly
-  - first:
-      74: -633814006170471828
-    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Eating
-  - first:
-      74: 6710110853728549105
-    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Run
+      74: -456487948552762714
+    second: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Run
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -50,40 +44,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Skelet.c.002|Attack
-      takeName: Skelet.c.002|Attack
+      name: Skelet.c.002|Skelet.c.001|Skelet.c.001|characterEating
+      takeName: Skelet.c.002|Skelet.c.001|Skelet.c.001|characterEating
       internalID: 0
       firstFrame: 0
-      lastFrame: 21
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Skelet.c.002|CharacterEndEating
-      takeName: Skelet.c.002|CharacterEndEating
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 40
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -108,37 +73,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Skelet.c.002|enemyRun
-      takeName: Skelet.c.002|enemyRun
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 21
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 1
-      loopBlendPositionY: 1
-      loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Skelet.c.002|Fly
-      takeName: Skelet.c.002|Fly
+      name: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Attack
+      takeName: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Attack
       internalID: 0
       firstFrame: 0
       lastFrame: 20
@@ -166,8 +102,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Skelet.c.002|Skelet.c.002|Skelet.c.002|Eating
-      takeName: Skelet.c.002|Skelet.c.002|Skelet.c.002|Eating
+      name: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Eating
+      takeName: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Eating
       internalID: 0
       firstFrame: 0
       lastFrame: 21
@@ -195,11 +131,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Skelet.c.002|Skelet.c.002|Skelet.c.002|Run
-      takeName: Skelet.c.002|Skelet.c.002|Skelet.c.002|Run
+      name: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Run
+      takeName: Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Skelet.c.002|Run
       internalID: 0
       firstFrame: 0
-      lastFrame: 21
+      lastFrame: 22
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -226,7 +162,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.3
+    globalScale: 0.4
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -277,12 +213,12 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.3
-    rootMotionBoneName: 
+    globalScale: 0.4
+    rootMotionBoneName: Skelet.c.002
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: eb3dceb4e55295f47bd5cde5050eb103, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 8a5a0bc74a0433844a9ac00f9b89dc3d, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
