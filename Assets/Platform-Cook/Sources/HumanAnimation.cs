@@ -9,13 +9,9 @@ public class HumanAnimation : MonoBehaviour
     private const string Fly = nameof(Fly);
     private const string Movement = nameof(Movement);
     private const string Attack = nameof(Attack);
+    private const string Jump = nameof(Jump);
 
     [SerializeField] private Animator _animator;
-
-    public void ChangeAnimator(GameObject skin)
-    {
-       _animator = skin.GetComponent<Animator>();
-    }
 
     public void PlayMovement(bool isMove)
     {
@@ -35,5 +31,10 @@ public class HumanAnimation : MonoBehaviour
     public void PlayFly(bool isFlying)
     {
         _animator.SetBool(Fly, isFlying);
+    }
+
+    public void PlayJump(bool isJumping)
+    {
+        _animator.SetBool(Jump, isJumping);
     }
 }

@@ -34,15 +34,10 @@ public class BonusGame : MonoBehaviour, IBonusGame
         _camera.ZoomToTarget(() => StartCoroutine(CookEatingFood()));
     }
 
-    private void OnScoreBlockDestroyed()
-    {
-        _destroyedBlocksCount++;
-        Taptic.Medium();
-    }
-
     private void OnCameraMovedToStartPoint()
     {
         _wall.transform.DOLocalRotate(new Vector3(-90, 0, 0), 2f);
+        _cook.Animation.PlayJump(true);
 
         _cook.transform.DOJump(_startPoint.position, 1.5f, 1, 3f)
             .OnComplete(() => _cook.transform.DOMove(new Vector3(_cook.transform.position.x, _cook.transform.position.y, _cook.transform.position.z + 20), 7).OnComplete(() => GameOver?.Invoke(new GameResult(_completeGameCurrency, _destroyedBlocksCount))));
@@ -62,7 +57,7 @@ public class BonusGame : MonoBehaviour, IBonusGame
         }
 
         _cook.Animation.PlayEating(false);
-        _cook.Animation.PlayMovement(true);
+        _cook.Animation.PlayMovement(false);
         _camera.MoveToStartPoint(OnCameraMovedToStartPoint);
     }
 }
