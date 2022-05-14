@@ -51,27 +51,27 @@ public class HungryHumansStorey : Storey
     {
         while (true)
         {
-            _humansCount++;
-
-            var randomConfig = _hungryHumanConfigs[UnityEngine.Random.Range(0, _hungryHumanConfigs.Length)]; 
-            var human = CreateHungryHuman(randomConfig);
-
-            human.Dead += OnHumanDead;
+            CreateHungryHumans();
 
             yield return Yielder.WaitForSeconds(_waveSettings.DelayBetweenSpawn);
         }
     }
 
-    private IHungryHuman CreateHungryHuman(HungryHumanConfig config)
+    private void CreateHungryHumans()
     {
-        var randomIndexPosition = UnityEngine.Random.Range(0, _waveSettings.HumansPositions.Count);
+        SpawnPattern spawnPattern = _waveSettings.SpawnPatterns[UnityEngine.Random.Range(0, _waveSettings.SpawnPatterns.Length)];
 
-        IHungryHuman human =  Instantiate(_hungryHumanTemplate, _waveSettings.HumansPositions[randomIndexPosition].position,
-            Quaternion.Euler(_waveSettings.HumansPositions[randomIndexPosition].rotation.eulerAngles));
+        for (int i = 0; i < spawnPattern.SpawnPoints.Length; i++)
+        {
+            HungryHumanConfig randomConfig = _hungryHumanConfigs[UnityEngine.Random.Range(0, _hungryHumanConfigs.Length)];
 
-        human.Init(_platform, config);
+            IHungryHuman human = Instantiate(_hungryHumanTemplate, spawnPattern.SpawnPoints[i].position,
+                  Quaternion.Euler(spawnPattern.SpawnPoints[i].rotation.eulerAngles));
+            human.Init(_platform, randomConfig);
+            human.Dead += OnHumanDead;
 
-        return human;
+            _humansCount++;
+        }
     }
 
     private void OnHumanDead()

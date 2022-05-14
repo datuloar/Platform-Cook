@@ -2117,6 +2117,7 @@ MonoBehaviour:
   - {fileID: 335637170}
   - {fileID: 1119759651}
   - {fileID: 1534406576}
+  - {fileID: 1531655740}
   - {fileID: 1087205422}
   _platform: {fileID: 8024307708980910068}
   _cookTemplate: {fileID: 8726638240147578203, guid: 1f88380815b707f44bd1c59547455544, type: 3}
@@ -2396,6 +2397,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c03f011b0ccb6c40a1e5f8e907a181f, type: 3}
   m_PrefabInstance: {fileID: 1475231580}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1531655740 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4796916616972942263, guid: bdcc0250bce550348a8e7accc808ed04, type: 3}
+  m_PrefabInstance: {fileID: 1944813222}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d34c3242a09bd84bbe3d292a72dafc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1534406575
 PrefabInstance:
   m_ObjectHideFlags: 0

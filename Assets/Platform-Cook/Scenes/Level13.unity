@@ -3051,8 +3051,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.410979, y: 3.735822, z: 1.7360182}
-  m_Center: {x: 0.0018680096, y: -0.024914343, z: 0.76800966}
+  m_Size: {x: 4.410979, y: 3.5814936, z: 1.7360182}
+  m_Center: {x: 0.0018680096, y: -0.059423342, z: 0.76800966}
 --- !u!212 &359822369
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6348,7 +6348,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7513297493162946847, guid: 95253444a5ed3514eaad9b64f96dfe54, type: 3}
 --- !u!1 &727882086
@@ -16562,7 +16562,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7513297493162946847, guid: 95253444a5ed3514eaad9b64f96dfe54, type: 3}
 --- !u!1 &1976349508

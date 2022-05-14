@@ -4659,6 +4659,7 @@ MonoBehaviour:
   _hungryHumanConfigs:
   - {fileID: 11400000, guid: f99d1967e256e6745ab668984cdd6065, type: 2}
   - {fileID: 11400000, guid: b48d62182f92b08439bba8d90b9bd124, type: 2}
+  - {fileID: 11400000, guid: 70e024597a19fd8489d5311515ae5d73, type: 2}
   _hungryHumanTemplate: {fileID: 4120873998326228850, guid: 3fa3c3804cf450a49af7f277cbec40d8, type: 3}
 --- !u!64 &1231356039
 MeshCollider:

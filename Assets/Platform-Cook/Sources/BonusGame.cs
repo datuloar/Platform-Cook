@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using System.Threading.Tasks;
 
 public class BonusGame : MonoBehaviour, IBonusGame
 {
     [SerializeField] private float _cookFlyingSpeed = 4f;
     [SerializeField] private int _completeGameCurrency = 150;
-    [SerializeField] private List<ScoreBlock> _scoreBlocks;
+    [SerializeField] private Transform _startPoint;
+    [SerializeField] private Wall _wall;
 
     private ICook _cook;
     private ICamera _camera;
@@ -15,18 +18,6 @@ public class BonusGame : MonoBehaviour, IBonusGame
     private int _destroyedBlocksCount;
 
     public event Action<GameResult> GameOver;
-
-    private void OnEnable()
-    {
-        foreach (var scoreBlock in _scoreBlocks)
-            scoreBlock.Destroyed += OnScoreBlockDestroyed;
-    }
-
-    private void OnDisable()
-    {
-        foreach (var scoreBlock in _scoreBlocks)
-            scoreBlock.Destroyed -= OnScoreBlockDestroyed;
-    }
 
     public void Init(ICook cook, IPlatform platform, ICamera camera)
     {
@@ -40,12 +31,7 @@ public class BonusGame : MonoBehaviour, IBonusGame
         _cook.transform.position = _platform.transform.position + new Vector3(0, 0, -0.6f);
         _cook.transform.rotation = Quaternion.Euler(new Vector3(0, 0));
 
-        _camera.ZoomToTarget(OnCookZoomed);
-    }
-
-    private void OnCookZoomed()
-    {
-        StartCoroutine(CookEatingFood());
+        _camera.ZoomToTarget(() => StartCoroutine(CookEatingFood()));
     }
 
     private void OnScoreBlockDestroyed()
@@ -56,28 +42,10 @@ public class BonusGame : MonoBehaviour, IBonusGame
 
     private void OnCameraMovedToStartPoint()
     {
-        StartCoroutine(CookFlying());
-    }
+        _wall.transform.DOLocalRotate(new Vector3(-90, 0, 0), 2f);
 
-    private IEnumerator CookFlying()
-    {
-        const float HeightLimit = 25f;
-
-        var bonusHeight = Mathf.Clamp(_cook.Weight / HeightLimit, 2, HeightLimit);
-        var targetPosition = new Vector3(_cook.transform.position.x, _cook.transform.position.y + bonusHeight, _cook.transform.position.z);
-
-        _cook.Animation.PlayFly(true);
-        _cook.StartFarting();
-
-        while (_cook.transform.position != targetPosition)
-        {
-            _cook.transform.position = Vector3.MoveTowards(_cook.transform.position, targetPosition, _cookFlyingSpeed * Time.deltaTime);
-
-            yield return null;
-        }
-
-        _camera.StopFollowing();
-        GameOver?.Invoke(new GameResult(_completeGameCurrency, _destroyedBlocksCount));
+        _cook.transform.DOJump(_startPoint.position, 1.5f, 1, 3f)
+            .OnComplete(() => _cook.transform.DOMove(new Vector3(_cook.transform.position.x, _cook.transform.position.y, _cook.transform.position.z + 20), 7).OnComplete(() => GameOver?.Invoke(new GameResult(_completeGameCurrency, _destroyedBlocksCount))));
     }
 
     private IEnumerator CookEatingFood()

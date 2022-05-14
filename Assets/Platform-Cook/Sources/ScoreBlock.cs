@@ -9,40 +9,35 @@ public class ScoreBlock : MonoBehaviour
     [SerializeField] private Color _color;
     [SerializeField] private int _multiplier;
     [SerializeField] private TMP_Text _multiplierLabel;
-    [SerializeField] private List<Rigidbody> _rigidbodies;
-    [SerializeField] private List<MeshRenderer> _meshRenderers;
+    [SerializeField] private MeshRenderer _meshRenderer;
+    [SerializeField] private ParticleSystem[] _confetti;
 
     public event Action Destroyed;
 
     private void OnValidate()
     {
-        _multiplierLabel.text = $"x{_multiplier}";
-
-        foreach (var meshRenderer in _meshRenderers)
-            meshRenderer.SetProperty("_Color", _color);
+        FillSettings();
     }
 
     private void Awake()
     {
-        _multiplierLabel.text = $"x{_multiplier}";
-
-        foreach (var meshRenderer in _meshRenderers)
-            meshRenderer.SetProperty("_Color", _color);
+        FillSettings();
     }
 
-    private void Destroy()
+    private void FillSettings()
     {
-        foreach (var rigidbody in _rigidbodies)
-            rigidbody.isKinematic = false;
-
-        Destroyed?.Invoke();
+        _multiplierLabel.text = $"x{_multiplier}    x{_multiplier}";
+        _meshRenderer.SetProperty("_Color", _color);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out ICook cook))
         {
-            Destroy();
+            _meshRenderer.SetProperty("_Color", Color.white);
+
+            foreach (var confetti in _confetti)
+                confetti.Play();
         }
     }
 }
