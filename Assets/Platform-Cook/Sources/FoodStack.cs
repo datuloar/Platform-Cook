@@ -16,7 +16,7 @@ public class FoodStack : ResourcesStack
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.green;
 
         for (int y = 0; y < _size.y; y++)
         {
