@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Platform-Cook/Scenes/Level8.unity
     guid: 9197c299ebfdb6e4f945c24742e77212
   - enabled: 1
-    path: Assets/Platform-Cook/Scenes/Level9.unity
+    path: Assets/Platform-Cook/Scenes/Level8.unity
     guid: ef637706138fe1f4cb4e8a1715eddeaf
   - enabled: 1
     path: Assets/Platform-Cook/Scenes/Level10.unity

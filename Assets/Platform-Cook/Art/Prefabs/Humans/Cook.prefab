@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _axis: {x: 90, y: 0, z: 0}
-  _speed: 5
+  _speed: 4
 --- !u!1 &1246245724141954220
 GameObject:
   m_ObjectHideFlags: 0

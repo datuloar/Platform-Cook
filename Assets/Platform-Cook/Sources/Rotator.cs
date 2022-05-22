@@ -12,7 +12,7 @@ public class Rotator : MonoBehaviour
         transform.Rotate(_axis * _speed * Time.deltaTime);
     }
 
-    public void Rotate()
+    public void StartRotate()
     {
         enabled = true;
     }

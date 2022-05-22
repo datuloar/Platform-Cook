@@ -125,7 +125,7 @@ Material:
     - _RampType: 0
     - _ReceiveShadowsOff: 1
     - _ReflectionMapType: 0
-    - _ReflectionSmoothness: 0.5
+    - _ReflectionSmoothness: 0.626
     - _RenderingMode: 0
     - _RimMax: 1
     - _RimMin: 0.5

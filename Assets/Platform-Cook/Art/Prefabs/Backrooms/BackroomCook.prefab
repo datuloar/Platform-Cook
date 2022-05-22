@@ -425,6 +425,52 @@ Transform:
   m_Father: {fileID: 1561921086591511667}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1830446791923739413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7445679596162351377}
+  - component: {fileID: 8145565731703084887}
+  m_Layer: 7
+  m_Name: SkinRotator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7445679596162351377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830446791923739413}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.534, z: 0.156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3037423546758071308}
+  m_Father: {fileID: 7942591761281892795}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8145565731703084887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830446791923739413}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f383ae3a48401684b866cba355ddf8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _axis: {x: 90, y: 0, z: 0}
+  _speed: 4
 --- !u!1 &2255862462934670100
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,14 +590,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2541776955432919259}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.534, z: -0.156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3111735875735615298}
   - {fileID: 1298396424737222031}
   - {fileID: 7182144240216367793}
-  m_Father: {fileID: 7942591761281892795}
+  m_Father: {fileID: 7445679596162351377}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3784685728242419134
@@ -1143,7 +1189,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3037423546758071308}
+  - {fileID: 7445679596162351377}
   - {fileID: 5149319116306636441}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1174,10 +1220,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: e99683951e6945047ac2e84829445f59, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.059639715
+  m_Radius: 0.08491386
   m_Height: 0.93285763
   m_Direction: 1
-  m_Center: {x: -0.0027923286, y: 0.44315857, z: -0.010977827}
+  m_Center: {x: -0.0014788881, y: 0.44315857, z: -0.010977827}
 --- !u!114 &2441163643029471645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1198,6 +1244,7 @@ MonoBehaviour:
   _health: {fileID: 5251078575888249529}
   _belly: {fileID: 4649919892540482217}
   _fartTrailVfx: {fileID: 1298396424755604763}
+  _rotator: {fileID: 8145565731703084887}
 --- !u!114 &8085576530856976572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2204,14 +2251,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 552b7b5872bf41745810a0b7bdabf440, type: 3}
---- !u!4 &1298396424737222031 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 421518, guid: 552b7b5872bf41745810a0b7bdabf440, type: 3}
-  m_PrefabInstance: {fileID: 1298396424737587969}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &1298396424755604763 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 19852826, guid: 552b7b5872bf41745810a0b7bdabf440, type: 3}
+  m_PrefabInstance: {fileID: 1298396424737587969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1298396424737222031 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 421518, guid: 552b7b5872bf41745810a0b7bdabf440, type: 3}
   m_PrefabInstance: {fileID: 1298396424737587969}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4643234445517371559

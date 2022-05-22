@@ -40,19 +40,27 @@ public class BonusGame : MonoBehaviour, IBonusGame
         _cook.Animation.PlayJump(true);
 
         _cook.transform.DOJump(_startPoint.position, 2f, 1, 3.5f)
-            .OnComplete(() =>
+            .OnComplete(() => OnJumped());
+    }
+
+    private void OnJumped()
+    {
+        _cook.Rotator.StartRotate();
+
+        var distance = Mathf.Clamp(_cook.Weight / 12, 4, 35);
+
+        Vector3 movePosition = new Vector3(_cook.transform.position.x, _cook.transform.position.y, _cook.transform.position.z + distance);
+
+        _cook.transform.DOMove(movePosition, 7)
+       .OnComplete(
+            () =>
             {
-                _cook.Rotator.Rotate();
-                _cook.transform.DOMove(new Vector3(_cook.transform.position.x, _cook.transform.position.y, _cook.transform.position.z + 20), 7)
-               .OnComplete(
-                    () =>
-                    {
-                        _cook.Rotator.StopRotate();
-                        _camera.RotateAroundTarget();
-                        _cook.Animation.PlayJump(false);
-                        _cook.Animation.PlayFly(true);
-                        GameOver?.Invoke(new GameResult(_completeGameCurrency, _destroyedBlocksCount));
-                    });
+                _cook.Rotator.StopRotate();
+                _camera.RotateAroundTarget();
+                _cook.Animation.PlayJump(false);
+                _cook.Animation.PlayFly(true);
+
+                GameOver?.Invoke(new GameResult(_completeGameCurrency, _destroyedBlocksCount));
             });
     }
 
