@@ -30,11 +30,25 @@ public class ScoreBlock : MonoBehaviour
         _meshRenderer.SetProperty("_Color", _color);
     }
 
+    private IEnumerator ChangingColor()
+    {
+        var time = 0f;
+        var speed = 1f;
+
+        while (time < 1)
+        {
+            time += speed * Time.deltaTime;
+            _meshRenderer.SetProperty("_Color", Color.Lerp(_color, Color.white, time));
+
+            yield return null;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out ICook cook))
         {
-            _meshRenderer.SetProperty("_Color", Color.white);
+            StartCoroutine(ChangingColor());
 
             foreach (var confetti in _confetti)
                 confetti.Play();

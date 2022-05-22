@@ -13,11 +13,13 @@ public class Cook : MonoBehaviour, ICook
     [SerializeField] private Health _health;
     [SerializeField] private HumanBelly _belly;
     [SerializeField] private ParticleSystem _fartTrailVfx;
+    [SerializeField] private Rotator _rotator;
 
     private ITable _table;
 
     public event Action Dead;
 
+    public Rotator Rotator => _rotator;
     public HumanAnimation Animation => _animation;
     public float Weight => _belly.Weight;
 

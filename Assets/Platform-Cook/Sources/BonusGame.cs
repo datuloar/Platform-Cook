@@ -36,11 +36,24 @@ public class BonusGame : MonoBehaviour, IBonusGame
 
     private void OnCameraMovedToStartPoint()
     {
-        _wall.transform.DOLocalRotate(new Vector3(-90, 0, 0), 2f);
+        _wall.AllowExplosion();
         _cook.Animation.PlayJump(true);
 
-        _cook.transform.DOJump(_startPoint.position, 1.5f, 1, 3f)
-            .OnComplete(() => _cook.transform.DOMove(new Vector3(_cook.transform.position.x, _cook.transform.position.y, _cook.transform.position.z + 20), 7).OnComplete(() => GameOver?.Invoke(new GameResult(_completeGameCurrency, _destroyedBlocksCount))));
+        _cook.transform.DOJump(_startPoint.position, 2f, 1, 3.5f)
+            .OnComplete(() =>
+            {
+                _cook.Rotator.Rotate();
+                _cook.transform.DOMove(new Vector3(_cook.transform.position.x, _cook.transform.position.y, _cook.transform.position.z + 20), 7)
+               .OnComplete(
+                    () =>
+                    {
+                        _cook.Rotator.StopRotate();
+                        _camera.RotateAroundTarget();
+                        _cook.Animation.PlayJump(false);
+                        _cook.Animation.PlayFly(true);
+                        GameOver?.Invoke(new GameResult(_completeGameCurrency, _destroyedBlocksCount));
+                    });
+            });
     }
 
     private IEnumerator CookEatingFood()

@@ -10,6 +10,7 @@ public class MainCamera : MonoBehaviour, ICamera
     [SerializeField] private Vector3 _zoomOffset;
     [SerializeField] private float _moveToStartPointDuration;
     [SerializeField] private float _moveToZoomPointDuration;
+    [SerializeField] private float _rotateSpeed = 10f;
 
     private ICameraTarget _target;
     private bool _canFollowing;
@@ -46,9 +47,26 @@ public class MainCamera : MonoBehaviour, ICamera
             });
     }
 
+    public void RotateAroundTarget()
+    {
+        _canFollowing = false;
+
+        StartCoroutine(RotatingAroundTarget());
+    }
+
     public void SetTarget(ICameraTarget target) => _target = target;
 
     public void StopFollowing() => _canFollowing = false;
+
+    private IEnumerator RotatingAroundTarget()
+    {
+        while (true)
+        {
+            transform.RotateAround(_target.transform.position, Vector3.up, _rotateSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+    }
 
     private void FollowTarget()
     {
