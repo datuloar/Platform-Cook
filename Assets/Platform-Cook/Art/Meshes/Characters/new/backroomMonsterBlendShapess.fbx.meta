@@ -1,23 +1,23 @@
 fileFormatVersion: 2
-guid: cf85d376a2629cf4c967884357926de7
+guid: c8245fae41f2c1046b52b3702f5a3cc0
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: -1042549247526800802
-    second: Skelet.c.001|backroomAttack
+      74: -5261552136818025422
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|backroomAttack
   - first:
-      74: -4793401634657086159
-    second: Skelet.c.001|backroomIdle
+      74: 8991032065782559384
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|backroomIdle
   - first:
-      74: 7487877255968193457
-    second: Skelet.c.001|backroomRun
+      74: 8073630312510967676
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|backroomRun
   - first:
-      74: -4572549976004244999
-    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|characterEating
+      74: -7648691130055837019
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|characterEa
   - first:
-      74: 1685256198980213713
-    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|startIdle
+      74: -1255591451104741510
+    second: Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|Skelet.c.001|startIdle
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -49,7 +49,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 0.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -100,7 +100,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
