@@ -10,12 +10,13 @@ public class BonusGame : MonoBehaviour, IBonusGame
     [SerializeField] private float _cookFlyingSpeed = 4f;
     [SerializeField] private int _completeGameCurrency = 150;
     [SerializeField] private Transform _startPoint;
+    [SerializeField] private Transform[] _jumpPoints;
     [SerializeField] private Wall _wall;
 
     private ICook _cook;
     private ICamera _camera;
     private IPlatform _platform;
-    private int _destroyedBlocksCount;
+    private int _currentJumpsCount;
 
     public event Action<GameResult> GameOver;
 
@@ -39,29 +40,17 @@ public class BonusGame : MonoBehaviour, IBonusGame
         _wall.AllowExplosion();
         _cook.Animation.PlayJump(true);
 
-        _cook.transform.DOJump(_startPoint.position, 2f, 1, 3.5f)
-            .OnComplete(() => OnJumped());
+        _cook.transform.DOJump(_startPoint.position, 2.5f, 1, 2f).SetEase(Ease.Linear)
+            .OnComplete(() => OnJumpedOnFinishLine());
     }
 
-    private void OnJumped()
+    private void OnJumpedOnFinishLine()
     {
-        _cook.Rotator.StartRotate();
+        var jumpsCount = Mathf.Clamp((int)_cook.Weight / 37, 4, 15);
 
-        var distance = Mathf.Clamp(_cook.Weight / 12, 4, 35);
+        _cook.TransormateToBall();
 
-        Vector3 movePosition = new Vector3(_cook.transform.position.x, _cook.transform.position.y, _cook.transform.position.z + distance);
-
-        _cook.transform.DOMove(movePosition, 7)
-       .OnComplete(
-            () =>
-            {
-                _cook.Rotator.StopRotate();
-                _camera.RotateAroundTarget();
-                _cook.Animation.PlayJump(false);
-                _cook.Animation.PlayFly(true);
-
-                GameOver?.Invoke(new GameResult(_completeGameCurrency, _destroyedBlocksCount));
-            });
+        StartCoroutine(JumpingOnBlocks(jumpsCount));
     }
 
     private IEnumerator CookEatingFood()
@@ -80,5 +69,31 @@ public class BonusGame : MonoBehaviour, IBonusGame
         _cook.Animation.PlayEating(false);
         _cook.Animation.PlayMovement(false);
         _camera.MoveToStartPoint(OnCameraMovedToStartPoint);
+    }
+
+    private IEnumerator JumpingOnBlocks(int blocksCount)
+    {
+        var jumpPower = 2.5f;
+        var jumpDuration = 1.2f;
+
+        for (int i = 0; i < blocksCount; i++)
+        {
+            if (jumpPower > 0.4f)
+                jumpPower -= 0.3f;
+
+            if (jumpDuration > 0.1f)
+                jumpDuration -= 0.02f;
+
+            _cook.transform.DOJump(_jumpPoints[i].position, jumpPower, 1, jumpDuration).SetEase(Ease.Linear);
+
+            yield return Yielder.WaitForSeconds(jumpDuration);
+        }
+
+        _cook.TransformateToCook();
+        _cook.Animation.PlayJump(false);
+        _cook.Animation.PlayFly(true);
+        _camera.RotateAroundTarget();
+
+        GameOver?.Invoke(new GameResult(_completeGameCurrency, _currentJumpsCount));
     }
 }

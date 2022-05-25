@@ -12,16 +12,14 @@ public class Cook : MonoBehaviour, ICook
     [SerializeField] private HumanAnimation _animation;
     [SerializeField] private Health _health;
     [SerializeField] private HumanBelly _belly;
-    [SerializeField] private ParticleSystem _fartTrailVfx;
-    [SerializeField] private Rotator _rotator;
+    [SerializeField] private HumanBall _humanBall;
 
     private ITable _table;
 
-    public event Action Dead;
-
-    public Rotator Rotator => _rotator;
     public HumanAnimation Animation => _animation;
     public float Weight => _belly.Weight;
+
+    public event Action Dead;
 
     private void OnEnable()
     {
@@ -65,11 +63,6 @@ public class Cook : MonoBehaviour, ICook
         _skin.ChangeSuit(suit);
     }
 
-    public void StartFarting()
-    {
-        _fartTrailVfx.Play();
-    }
-
     public void Eat(Food food)
     {
         _belly.AddFood(food);
@@ -95,5 +88,16 @@ public class Cook : MonoBehaviour, ICook
                 Taptic.Selection();
             }
         }
+    }
+
+    public void TransormateToBall()
+    {
+        _humanBall.TransformateToBall();
+    }
+
+    public void TransformateToCook()
+    {
+        _humanBall.TransformateToHuman();
+        _animation.PlayJump(false);
     }
 }

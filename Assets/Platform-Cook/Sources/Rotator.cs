@@ -7,20 +7,32 @@ public class Rotator : MonoBehaviour
     [SerializeField] private Vector3 _axis;
     [SerializeField] private float _speed;
 
-    private void Update()
-    {
-        transform.Rotate(_axis * _speed * Time.deltaTime);
-    }
+    private Coroutine _rotating;
 
     public void StartRotate()
     {
-        enabled = true;
+        if (_rotating != null)
+            StopCoroutine(_rotating);
+
+        _rotating =  StartCoroutine(Rotating());
     }
 
     public void StopRotate()
-    {     
+    {
+        if (_rotating != null)
+            StopCoroutine(_rotating);
+
         transform.rotation = Quaternion.Euler(Vector3.zero);
-        enabled = false;
+    }
+
+    private IEnumerator Rotating()
+    {
+        while (true)
+        {
+            transform.Rotate(_axis * _speed * Time.deltaTime);
+
+            yield return null;
+        }
     }
 
     private IEnumerator StopingRotate()
